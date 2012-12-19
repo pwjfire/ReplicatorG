@@ -180,8 +180,8 @@ ToolpathGenerator.GeneratorListener
 	static final String WINDOW_TITLE = "ReplicatorG" + " - " + Base.VERSION_NAME;
 
 
-	final static String MODEL_TAB_KEY = "MODEL";
-	final static String GCODE_TAB_KEY = "GCODE";
+	final static String MODEL_TAB_KEY = "模型";
+	final static String GCODE_TAB_KEY = "G代码";
 	// p5 icon for the window
 	Image icon;
 
@@ -245,7 +245,7 @@ ToolpathGenerator.GeneratorListener
 //	JMenuItem editDualstartItem;
 //	JMenuItem editStartItem;
 //	JMenuItem editEndItem;
-	JMenu changeToolheadMenu = new JMenu("Swap Toolhead in .gcode");
+	JMenu changeToolheadMenu = new JMenu("在G代码中替换喷头");
 
 	
 	JMenu machineMenu;
@@ -791,9 +791,9 @@ ToolpathGenerator.GeneratorListener
 
 	protected JMenu buildFileMenu() {
 		JMenuItem item;
-		JMenu menu = new JMenu("File");
+		JMenu menu = new JMenu("文件");
 
-		item = newJMenuItem("New", 'N');
+		item = newJMenuItem("新建", 'N');
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleNew(false);
@@ -801,7 +801,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(item);
 
-		item = newJMenuItem("Open...", 'O', false);
+		item = newJMenuItem("打开...", 'O', false);
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleOpen(null);
@@ -809,7 +809,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(item);
 
-		saveMenuItem = newJMenuItem("Save", 'S');
+		saveMenuItem = newJMenuItem("保存", 'S');
 		saveMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleSave(false);
@@ -817,7 +817,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(saveMenuItem);
 
-		saveAsMenuItem = newJMenuItem("Save As...", 'S', true);
+		saveAsMenuItem = newJMenuItem("另存为...", 'S', true);
 		saveAsMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleSaveAs();
@@ -827,7 +827,7 @@ ToolpathGenerator.GeneratorListener
 
 		menu.addSeparator();
 
-		mruMenu = new JMenu("Recent");
+		mruMenu = new JMenu("最近打开");
 		reloadMruMenu();
 		menu.add(mruMenu);
 
@@ -835,7 +835,7 @@ ToolpathGenerator.GeneratorListener
 		menu.add(buildExamplesMenu()); 
 		menu.add(buildScriptsMenu()); 
 
-		JMenuItem resetParamsItem = new JMenuItem("Reset all preferences");
+		JMenuItem resetParamsItem = new JMenuItem("重设所有参数");
 		resetParamsItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				resetPreferences();
@@ -845,7 +845,7 @@ ToolpathGenerator.GeneratorListener
 		if (!Base.isMacOS()) {
 			menu.addSeparator();
 
-			item = newJMenuItem("Preferences", ',');
+			item = newJMenuItem("参数", ',');
 			item.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					showPrefsWindow();
@@ -854,7 +854,7 @@ ToolpathGenerator.GeneratorListener
 			menu.add(item);
 			menu.add(resetParamsItem);
 			menu.addSeparator();
-			item = newJMenuItem("Quit", 'Q');
+			item = newJMenuItem("退出", 'Q');
 			item.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					handleQuitInternal();
@@ -874,9 +874,9 @@ ToolpathGenerator.GeneratorListener
 	protected JMenu buildThingiverseMenu()
 	{
 		JMenuItem item;
-		JMenu menu = new JMenu("Thingiverse");
+		JMenu menu = new JMenu("网络");
 		
-		item = new JMenuItem("What's New?");
+		item = new JMenuItem("最新");
 		item.addActionListener( new ActionListener(){
 			//do bare bones launch
 			@Override
@@ -886,7 +886,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(item);
 		
-		item = new JMenuItem("What's Popular?");
+		item = new JMenuItem("流行");
 		item.addActionListener( new ActionListener(){
 			//do bare bones launch
 			@Override
@@ -896,7 +896,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(item);
 		
-		item = new JMenuItem("Dual Extrusion Models!");
+		item = new JMenuItem("双色模型!");
 		item.addActionListener( new ActionListener(){
 			//do bare bones launch
 			@Override
@@ -931,9 +931,9 @@ ToolpathGenerator.GeneratorListener
 	protected JMenu buildHelpMenu()
 	{
 		JMenuItem item;
-		JMenu menu = new JMenu("Help");
+		JMenu menu = new JMenu("帮助");
 		
-		item = new JMenuItem("Offline Documentation");
+		item = new JMenuItem("离线文档");
 		item.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -952,7 +952,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(item);
 		
-		item = new JMenuItem("Supported GCodes");
+		item = new JMenuItem("支持的G代码");
 		item.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -1050,9 +1050,9 @@ ToolpathGenerator.GeneratorListener
 
 	protected JMenu buildGCodeMenu() {
 		JMenuItem item;
-		JMenu menu = new JMenu("GCode");
+		JMenu menu = new JMenu("G代码");
 
-		item = newJMenuItem("Estimate", 'E');
+		item = newJMenuItem("预估", 'E');
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleEstimate();
@@ -1060,7 +1060,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(item);
 
-		item = newJMenuItem("Simulate", 'L');
+		item = newJMenuItem("仿真", 'L');
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleSimulate();
@@ -1069,7 +1069,7 @@ ToolpathGenerator.GeneratorListener
 		item.setEnabled(false);
 		menu.add(item);
 
-		generateItem = newJMenuItem("Generate", 'G', true);
+		generateItem = newJMenuItem("生成", 'G', true);
 		generateItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				runToolpathGenerator(false);
@@ -1077,7 +1077,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(generateItem);
 
-		buildMenuItem = newJMenuItem("Build", 'B');
+		buildMenuItem = newJMenuItem("打印", 'B');
 		buildMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleBuild();
@@ -1085,7 +1085,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(buildMenuItem);
 
-		pauseItem = newJMenuItem("Pause", 'E');
+		pauseItem = newJMenuItem("暂停", 'E');
 		pauseItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handlePause();
@@ -1094,7 +1094,7 @@ ToolpathGenerator.GeneratorListener
 		pauseItem.setEnabled(false);
 		menu.add(pauseItem);
 
-		stopItem = newJMenuItem("Stop", '.');
+		stopItem = newJMenuItem("停止", '.');
 		stopItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleStop();
@@ -1104,7 +1104,7 @@ ToolpathGenerator.GeneratorListener
 		menu.add(stopItem);
 
 		// Create gcode generator menu item(s)
-		JMenu genMenu = new JMenu("GCode Generator");
+		JMenu genMenu = new JMenu("G代码生成器");
 		Vector<ToolpathGeneratorDescriptor> generators = ToolpathGeneratorFactory.getGeneratorList();		
 		String name = ToolpathGeneratorFactory.getSelectedName(); /// <get configured 'current' slicer
 		ButtonGroup group = new ButtonGroup();
@@ -1124,7 +1124,7 @@ ToolpathGenerator.GeneratorListener
 		menu.add(genMenu);
 
 		// BASE PROFILES
-		profilesMenuItem = newJMenuItem("Edit Slicing Profiles...", 'R');
+		profilesMenuItem = newJMenuItem("编辑切片配置...", 'R');
 		profilesMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleEditProfiles();
@@ -1136,7 +1136,7 @@ ToolpathGenerator.GeneratorListener
 		menu.addSeparator();
 		
 		//Change Toolhead of GCode
-		JMenuItem left = new JMenuItem("to use T1 (aka Left/A)");
+		JMenuItem left = new JMenuItem("使用喷头2(也叫 左或A)");
 		left.addActionListener(new ActionListener()
 		{
 			@Override
@@ -1157,7 +1157,7 @@ ToolpathGenerator.GeneratorListener
 				}
 			}	
 		});
-		JMenuItem right = new JMenuItem("to use T0 (aka Right/B)");
+		JMenuItem right = new JMenuItem("使用喷头1(也叫 右或B)");
 		right.addActionListener(new ActionListener()
 		{
 			@Override
@@ -1182,7 +1182,7 @@ ToolpathGenerator.GeneratorListener
 		changeToolheadMenu.add(left);
 		changeToolheadMenu.add(right);
 		menu.add(changeToolheadMenu);
-		dualstrusionItem = newJMenuItem("Merge .stl for DualExtrusion", 'D');
+		dualstrusionItem = newJMenuItem("合成stl文件", 'D');
 		dualstrusionItem.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -1245,25 +1245,25 @@ ToolpathGenerator.GeneratorListener
 		return menu;
 	}
 
-	JMenuItem onboardParamsItem = new JMenuItem("Onboard Preferences...");
+	JMenuItem onboardParamsItem = new JMenuItem("电路板参数...");
 //	JMenuItem toolheadIndexingItem = new JMenuItem("Set Toolhead Index...");
 	JMenuItem realtimeControlItem = new JMenuItem("Open real time controls window...");
-	JMenuItem infoPanelItem = new JMenuItem("Machine information...");
+	JMenuItem infoPanelItem = new JMenuItem("打印机信息...");
 	JMenuItem preheatItem;
 
 	protected JMenu buildMachineMenu() {
 		JMenuItem item;
-		JMenu menu = new JMenu("Machine");
+		JMenu menu = new JMenu("打印机");
 
-		machineMenu = new JMenu("Machine Type (Driver)");
+		machineMenu = new JMenu("机器类型(驱动)");
 		populateMachineMenu();
 		menu.add(machineMenu);
 
-		serialMenu = new JMenu("Connection (Serial Port)");
+		serialMenu = new JMenu("连接(串口)");
 		reloadSerialMenu();
 		menu.add(serialMenu);
 
-		controlPanelItem = newJMenuItem("Control Panel", 'J');
+		controlPanelItem = newJMenuItem("控制面板", 'J');
 //		controlPanelItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J,ActionEvent.CTRL_MASK));
 		controlPanelItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1300,7 +1300,7 @@ ToolpathGenerator.GeneratorListener
 			menu.add(realtimeControlItem);
 		}
 
-		item = new JMenuItem("Upload new firmware...");
+		item = new JMenuItem("上传新固件...");
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FirmwareUploader.startUploader(MainWindow.this);
@@ -1354,11 +1354,11 @@ ToolpathGenerator.GeneratorListener
 		
 		// update preheat menu info
 		if(preheatMachine) {
-			preheatItem.setText("Turn off preheat");
+			preheatItem.setText("关闭预热");
 			preheatItem.setToolTipText("Allows the machine to cool down (i.e. not maintain temperature)");
 		}
 		else {
-			preheatItem.setText("Preheat Machine");
+			preheatItem.setText("开启预热");
 			preheatItem.setToolTipText("Tells the machine to begin warming up to the temperature specified in preferences");
 		}
 		
@@ -1616,14 +1616,14 @@ ToolpathGenerator.GeneratorListener
 	 * Constructs and returns the menu under 'Edit' 
 	 */
 	public JMenu buildEditMenu() {
-		JMenu menu = new JMenu("Edit");
+		JMenu menu = new JMenu("编辑");
 		JMenuItem item;
 
-		undoItem = newJMenuItem("Undo", 'Z');
+		undoItem = newJMenuItem("撤销", 'Z');
 		undoItem.addActionListener(undoAction = new UndoAction());
 		menu.add(undoItem);
 
-		redoItem = newJMenuItem("Redo", 'Y');
+		redoItem = newJMenuItem("恢复", 'Y');
 		redoItem.addActionListener(redoAction = new RedoAction());
 		menu.add(redoItem);
 
@@ -1631,7 +1631,7 @@ ToolpathGenerator.GeneratorListener
 
 		// TODO "cut" and "copy" should really only be enabled
 		// if some text is currently selected
-		item = newJMenuItem("Cut", 'X');
+		item = newJMenuItem("剪切", 'X');
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textarea.cut();
@@ -1640,7 +1640,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(item);
 
-		item = newJMenuItem("Copy", 'C');
+		item = newJMenuItem("复制", 'C');
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textarea.copy();
@@ -1648,7 +1648,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(item);
 
-		item = newJMenuItem("Paste", 'V');
+		item = newJMenuItem("粘贴", 'V');
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textarea.paste();
@@ -1657,7 +1657,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		menu.add(item);
 
-		item = newJMenuItem("Select All", 'A');
+		item = newJMenuItem("全选", 'A');
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textarea.selectAll();
@@ -1667,7 +1667,7 @@ ToolpathGenerator.GeneratorListener
 
 		menu.addSeparator();
 
-		item = newJMenuItem("Find...", 'F');
+		item = newJMenuItem("查找...", 'F');
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (find == null) {
@@ -1682,7 +1682,7 @@ ToolpathGenerator.GeneratorListener
 
 		// TODO find next should only be enabled after a
 		// search has actually taken place
-		item = newJMenuItem("Find Next", 'G');
+		item = newJMenuItem("查找下一个", 'G');
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (find != null) {
@@ -1726,7 +1726,7 @@ ToolpathGenerator.GeneratorListener
 		private static final long serialVersionUID = 7800704765553895387L;
 
 		public UndoAction() {
-			super("Undo");
+			super("撤销");
 			this.setEnabled(false);
 		}
 
@@ -1753,8 +1753,8 @@ ToolpathGenerator.GeneratorListener
 				undoItem.setText(undo.getUndoPresentationName());
 				putValue(Action.NAME, undo.getUndoPresentationName());
 			} else {
-				undoItem.setText("Undo");
-				putValue(Action.NAME, "Undo");
+				undoItem.setText("撤销");
+				putValue(Action.NAME, "撤销");
 			}
 		}
 	}
@@ -1767,7 +1767,7 @@ ToolpathGenerator.GeneratorListener
 		private static final long serialVersionUID = -2427139178653072745L;
 
 		public RedoAction() {
-			super("Redo");
+			super("恢复");
 			this.setEnabled(false);
 		}
 
@@ -1791,8 +1791,8 @@ ToolpathGenerator.GeneratorListener
 			} else {
 				this.setEnabled(false);
 				redoItem.setEnabled(false);
-				redoItem.setText("Redo");
-				putValue(Action.NAME, "Redo");
+				redoItem.setText("恢复");
+				putValue(Action.NAME, "恢复");
 			}
 		}
 	}
