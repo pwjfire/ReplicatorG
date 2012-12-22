@@ -30,7 +30,7 @@ public class MoveTool extends Tool {
 	}
 
 	public String getButtonName() {
-		return "Move";
+		return "移动";
 	}
 
 	JCheckBox lockZ;
@@ -38,7 +38,7 @@ public class MoveTool extends Tool {
 	
 	public JPanel getControls() {
 		JPanel p = new JPanel(new MigLayout("fillx,filly,gap 0"));
-		JButton centerButton = createToolButton("Center","images/center-object.png");
+		JButton centerButton = createToolButton("居中","images/center-object.png");
 		centerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parent.getModel().center();
@@ -46,7 +46,7 @@ public class MoveTool extends Tool {
 		});
 		p.add(centerButton,"growx,wrap,spanx");
 
-		JButton lowerButton = createToolButton("Put on platform","images/center-object.png");
+		JButton lowerButton = createToolButton("放置于平台","images/center-object.png");
 		lowerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parent.getModel().putOnPlatform();
@@ -118,7 +118,7 @@ public class MoveTool extends Tool {
 				}
 			}
 		});
-		lockZ = new JCheckBox("Lock height");
+		lockZ = new JCheckBox("锁定高度");
 		p.add(lockZ,"growx,wrap,spanx");
 		
 		return p;
@@ -126,12 +126,12 @@ public class MoveTool extends Tool {
 
 	public String getInstructions() {
 		return Base.isMacOS()?
-				"<html><body>Drag to move object<br>Shift-drag to rotate view<br>Mouse wheel to zoom</body></html>":
-				"<html><body>Left drag to move object<br>Right drag to rotate view<br>Mouse wheel to zoom</body></html>";
+				"<html><body>拖拽来移动物体<br>按住Shift的同时拖拽来旋转视图<br>滚轮来缩放</body></html>":
+				"<html><body>左键拖拽来移动物体<br>右键拖拽来旋转视图<br>滚轮来缩放</body></html>";
 	}
 
 	public String getTitle() {
-		return "Move Object";
+		return "移动物体";
 	}
 
 	public void mouseDragged(MouseEvent e) {

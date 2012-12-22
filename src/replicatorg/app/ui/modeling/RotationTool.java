@@ -27,7 +27,7 @@ public class RotationTool extends Tool {
 
 	@Override
 	String getButtonName() {
-		return "Rotate";
+		return "Ðý×ª";
 	}
 
 	JCheckBox lockZ;

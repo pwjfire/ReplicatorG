@@ -19,13 +19,13 @@ public class ViewTool extends Tool {
 	}
 
 	public String getButtonName() {
-		return "View";
+		return "视图";
 	}
 
 	public JPanel getControls() {
 		JPanel p = new JPanel(new MigLayout("fillx,gap 0,wrap 2","[50%]0[50%]"));
 		JButton b;
-		b = createToolButton("Default","images/center-object.png");
+		b = createToolButton("默认","images/center-object.png");
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parent.preview.resetView();
@@ -61,11 +61,11 @@ public class ViewTool extends Tool {
 	}
 
 	public String getInstructions() {
-		return "<html><body>Drag to rotate<br>Mouse wheel to zoom</body></html>";
+		return "<html><body>拖拽来旋转<br>滚轮来缩放</body></html>";
 	}
 
 	public String getTitle() {
-		return "Preview";
+		return "预览";
 	}
 
 }
