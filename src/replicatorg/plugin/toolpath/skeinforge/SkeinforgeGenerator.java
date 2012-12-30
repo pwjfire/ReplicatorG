@@ -348,7 +348,7 @@ public abstract class SkeinforgeGenerator extends ToolpathGenerator {
 	public boolean configure(Frame parent, String name)
 	{
 		if (name == null)
-			name = "Generate GCode";
+			name = "Éú³ÉG´úÂë";
 		
 		// First check for Python.
 		boolean hasPython = PythonUtils.interactiveCheckVersion(parent,

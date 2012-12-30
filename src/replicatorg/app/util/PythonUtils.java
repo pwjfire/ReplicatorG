@@ -311,7 +311,7 @@ public class PythonUtils {
 			}
 			return true;
 		}
-		displayPythonErrorDialog(parent,procedureName+" requires that a Python interpreter be installed.");
+		displayPythonErrorDialog(parent,procedureName+" 需要一个安装Python解析器。");
 		return false;
 	}
 
@@ -329,8 +329,8 @@ public class PythonUtils {
 					String s = "<html><p>"+message+"</p><p>Make sure your system has the 'python' and 'python-tk' packages installed.</p></html>";
 					JOptionPane.showMessageDialog(parent, s, "Missing or incorrect Python interpreter detected", JOptionPane.ERROR_MESSAGE);
 				} else {
-					String s = "<html><p>"+message+"</p><p>Would you like to visit the Python download page now?</p></html>";
-					int rsp = JOptionPane.showConfirmDialog(parent, s, "Missing or incorrect Python interpreter detected", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+					String s = "<html><p>"+message+"</p><p>你想访问Python下载页面吗？</p></html>";
+					int rsp = JOptionPane.showConfirmDialog(parent, s, "Python解析器丢失或不正确", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
 					if (rsp == JOptionPane.YES_OPTION) {
 						Base.openURL("http://python.org/download");
 					}

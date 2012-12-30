@@ -126,8 +126,8 @@ public class MoveTool extends Tool {
 
 	public String getInstructions() {
 		return Base.isMacOS()?
-				"<html><body>拖拽来移动物体<br>按住Shift的同时拖拽来旋转视图<br>滚轮来缩放</body></html>":
-				"<html><body>左键拖拽来移动物体<br>右键拖拽来旋转视图<br>滚轮来缩放</body></html>";
+				"<html><body>拖拽来移动物体<br>按住Shift的同时拖拽来旋转视图<br>滚轮来缩放视图</body></html>":
+				"<html><body>左键拖拽来移动物体<br>右键拖拽来旋转视图<br>滚轮来缩放视图</body></html>";
 	}
 
 	public String getTitle() {

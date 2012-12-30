@@ -22,14 +22,14 @@ public class MirrorTool extends Tool {
 
 	@Override
 	String getButtonName() {
-		return "Mirror";
+		return "¾µÏñ";
 	}
 
 	@Override
 	JPanel getControls() {
 		JPanel p = new JPanel(new MigLayout("fillx,filly"));
 		JButton b;
-		b = createToolButton("Reflect in X","images/center-object.png");
+		b = createToolButton("ÑØXÖá×ö¾µÏñ","images/center-object.png");
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parent.getModel().mirrorX();
@@ -37,7 +37,7 @@ public class MirrorTool extends Tool {
 		});
 		p.add(b,"growx,wrap");
 
-		b = createToolButton("Reflect in Y","images/center-object.png");
+		b = createToolButton("ÑØYÖá×ö¾µÏñ","images/center-object.png");
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parent.getModel().mirrorY();
@@ -45,7 +45,7 @@ public class MirrorTool extends Tool {
 		});
 		p.add(b,"growx,wrap");
 
-		b = createToolButton("Reflect in Z","images/center-object.png");
+		b = createToolButton("ÑØZÖá×ö¾µÏñ","images/center-object.png");
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parent.getModel().mirrorZ();
@@ -58,12 +58,12 @@ public class MirrorTool extends Tool {
 
 	@Override
 	public String getInstructions() {
-		return "<html><body>Drag to rotate view<br>Mouse wheel to zoom</body></html>";
+		return "<html><body>ÍÏ×§À´Ğı×ªÊÓÍ¼<br>¹öÂÖÀ´Ëõ·ÅÊÓÍ¼</body></html>";
 	}
 
 	@Override
 	String getTitle() {
-		return "Reflect object";
+		return "¾µÏñÎïÌå";
 	}
 
 }

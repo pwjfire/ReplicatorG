@@ -34,13 +34,13 @@ public class SwingPythonSelector implements Selector {
 			// the path.  Even n00bs.  Thank you, Debian/Ubuntu. 
 			if (candidates != null && Base.isLinux()) { return null; }
 			String s = "<html>"+
-				"<p>ReplicatorG couldn't find a Python interpreter on your computer.</p>"+
-				"<p>Would you like to visit the Python download page, or manually select your Python installation?</p>"+
+				"<p>程序在您的电脑上无法找到Python解释器。</p>"+
+				"<p>访问Python下载页面或手动指定您电脑上的Python安装位置？</p>"+
 				"</html>";
 			Object[] options = {
-					"Go to Python website",
-					"Select Python",
-					"Cancel"
+					"转到Python网址",
+					"选择Python",
+					"取消"
 			};
 			int r = JOptionPane.showOptionDialog(frame,
 				    s,
@@ -64,19 +64,19 @@ public class SwingPythonSelector implements Selector {
 	private String selectedCandidate = null;
 	
 	private String selectCandidatePath(Vector<String> candidates) {
-		final JDialog dialog = new JDialog(frame, "Select Python binary", true);
+		final JDialog dialog = new JDialog(frame, "选择Python", true);
 		Container content = dialog.getContentPane();
 		content.setLayout(new MigLayout());
-		String msg = "<html>Multiple Python binaries have been found on your computer.<br>"+
-			"Select one from the list below, or click 'Other...' to find another version.</html>";
+		String msg = "<html>在您的电脑上发现了多个Python安装包。<br>"+
+			"从下面的列表中选择一个，或点击'其他...'来找到其他版本。</html>";
 		content.add(new JLabel(msg),"growx,wrap");
 		final JList list = new JList(candidates);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		content.add(list,"growx,wrap");
 		selectedCandidate = null;
-		JButton ok = new JButton("Ok");
-		JButton cancel = new JButton("Cancel");
-		JButton other = new JButton("Other...");
+		JButton ok = new JButton("确认");
+		JButton cancel = new JButton("取消");
+		JButton other = new JButton("其他...");
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				selectedCandidate = (String)list.getSelectedValue();
@@ -105,7 +105,7 @@ public class SwingPythonSelector implements Selector {
 	
 	public String selectFreeformPath() {
 		JFileChooser chooser = new JFileChooser();
-		chooser.setDialogTitle("Select installed Python binary");
+		chooser.setDialogTitle("选择已安装的Python安装包");
 		chooser.setDialogType(JFileChooser.OPEN_DIALOG);
 		if (chooser.showOpenDialog(this.frame) == JFileChooser.APPROVE_OPTION) {
 			File chosen = chooser.getSelectedFile();

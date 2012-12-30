@@ -85,7 +85,7 @@ public class RotationTool extends Tool {
 		});
 		p.add(b,"growx");
 
-		b = createToolButton("Lay flat","images/center-object.png");
+		b = createToolButton("放平","images/center-object.png");
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parent.getModel().layFlat();
@@ -93,7 +93,7 @@ public class RotationTool extends Tool {
 		});
 		p.add(b,"growx,spanx");
 
-		lockZ = new JCheckBox("Rotate around Z");
+		lockZ = new JCheckBox("绕Z轴旋转");
 		p.add(lockZ,"growx,spanx");
 
 		return p;
@@ -102,13 +102,13 @@ public class RotationTool extends Tool {
 	@Override
 	public String getInstructions() {
 		return Base.isMacOS()?
-				"<html><body>Drag to rotate object<br>Shift-drag to rotate view<br>Mouse wheel to zoom</body></html>":
-				"<html><body>Left drag to rotate object<br>Right drag to rotate view<br>Mouse wheel to zoom</body></html>";
+				"<html><body>拖拽来旋转视图<br>按住Shift的同时拖拽来旋转视图<br>滚轮来缩放视图</body></html>":
+				"<html><body>左键拖拽来旋转物体<br>右键拖拽来旋转视图<br>滚轮来缩放视图</body></html>";
 	}
 
 	@Override
 	String getTitle() {
-		return "Rotate Object";
+		return "旋转物体";
 	}
 	
 	public void mouseDragged(MouseEvent e) {

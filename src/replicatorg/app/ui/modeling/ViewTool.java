@@ -61,7 +61,7 @@ public class ViewTool extends Tool {
 	}
 
 	public String getInstructions() {
-		return "<html><body>拖拽来旋转<br>滚轮来缩放</body></html>";
+		return "<html><body>拖拽来旋转视图<br>滚轮来缩放视图</body></html>";
 	}
 
 	public String getTitle() {

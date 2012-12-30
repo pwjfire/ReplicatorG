@@ -31,7 +31,7 @@ public class ScalingTool extends Tool {
 
 	@Override
 	String getButtonName() {
-		return "Scale";
+		return "比例";
 	}
 
 	// If isAbove is true, scale from the bottom of the object; if false, scale from the rough centroid
@@ -50,7 +50,7 @@ public class ScalingTool extends Tool {
 		
 		p.add(scaleFactor,"growx");
 
-		b = new JButton("Scale");
+		b = new JButton("比例");
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				double scale = ((Number)scaleFactor.getValue()).doubleValue();
@@ -66,7 +66,7 @@ public class ScalingTool extends Tool {
 		});
 		p.add(b,"growx,wrap");
 		
-		b = createToolButton("inches->mm","images/center-object.png");
+		b = createToolButton("英寸->毫米","images/center-object.png");
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parent.getModel().scale(25.4d,parent.getModel().isOnPlatform());
@@ -74,7 +74,7 @@ public class ScalingTool extends Tool {
 		});
 		p.add(b,"growx,wrap");
 
-		b = createToolButton("mm->inches","images/center-object.png");
+		b = createToolButton("毫米->英寸","images/center-object.png");
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parent.getModel().scale(1d/25.4d,parent.getModel().isOnPlatform());
@@ -82,8 +82,8 @@ public class ScalingTool extends Tool {
 		});
 		p.add(b,"growx,wrap");
 		
-		final JButton emBiggen = createToolButton("Fill Build Space!","");
-		emBiggen.setToolTipText("Keith it! (Make the object as large as possible)");
+		final JButton emBiggen = createToolButton("填满打印区域!","");
+		emBiggen.setToolTipText("使物体尽可能的大");
 
 		emBiggen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -118,13 +118,13 @@ public class ScalingTool extends Tool {
 	@Override
 	public String getInstructions() {
 		return Base.isMacOS()?
-				"<html><body>Drag to scale object<br>Shift-drag to rotate view<br>Mouse wheel to zoom</body></html>":
-				"<html><body>Left drag to scale object<br>Right drag to rotate view<br>Mouse wheel to zoom</body></html>";
+				"<html><body>拖拽来缩放物体<br>按住Shift的同时拖拽来旋转视图<br>滚轮来缩放视图</body></html>":
+				"<html><body>左键拖拽来缩放物体<br>右键拖拽来旋转视图<br>滚轮来缩放视图</body></html>";
 	}
 
 	@Override
 	String getTitle() {
-		return "Scale object";
+		return "缩放物体";
 	}
 	
 	public void mousePressed(MouseEvent e) {
