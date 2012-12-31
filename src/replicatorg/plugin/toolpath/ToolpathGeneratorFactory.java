@@ -375,7 +375,7 @@ public class ToolpathGeneratorFactory {
 				prefs.add(postprocess.getPreference());
 				
 				SkeinforgeBooleanPreference raftPref = 			
-						new SkeinforgeBooleanPreference("Use Raft/Support",
+						new SkeinforgeBooleanPreference("使用 基板/支撑",
 							"replicatorg.skeinforge.useRaft", true,
 							"Enables Raft and/or support material.  " + 
 							"Enabled: add a 'raft' of plastic before starting the build. If overhangs are detected, add support material.");
@@ -383,7 +383,7 @@ public class ToolpathGeneratorFactory {
 					prefs.add(raftPref);
 					
 					SkeinforgeChoicePreference supportPref =
-						new SkeinforgeChoicePreference("Use support material",
+						new SkeinforgeChoicePreference("使用 支撑材料",
 								"replicatorg.skeinforge.choiceSupport", "None",
 								"If this option is selected, skeinforge will attempt to support large overhangs by laying down a support "+
 								"structure that you can later remove. Requires that Raft/Support be checked.");
@@ -406,7 +406,7 @@ public class ToolpathGeneratorFactory {
 					
 				// This will be done by the SkeinforgePostProcessor
 				SkeinforgeBooleanPreference bookendPref = 	
-					new SkeinforgeBooleanPreference("Use default start/end gcode",	"replicatorg.skeinforge.useMachineBookend", true,
+					new SkeinforgeBooleanPreference("使用 默认开始/结束G代码",	"replicatorg.skeinforge.useMachineBookend", true,
 						"<html>Use the start and end.gcode defined in machines/*.xml for the currently selected machine.<br/>" +
 						"Uncheck this to use custom start and end.gcode from the skeinforge profile.</html>");
 				bookendPref.addTrueOption(new SkeinforgeOption("alteration.csv", "Name of Start File:", ""));

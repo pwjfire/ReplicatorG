@@ -251,28 +251,28 @@ public class PrintOMatic5D implements SkeinforgePreference {
 		JComponent printPanel = new JPanel(new MigLayout("fillx"));
 
 		addTextParameter(printPanel, "infillPercent",
-				"Object infill (%)", "10",
-				"0= hollow object, 100=solid object");
+				"填充率 (%)", "10",
+				"0= 空心物体, 100= 实心物体");
 		
 		addTextParameter(printPanel, "desiredLayerHeight",
-				"Layer Height (mm)", "0.27",
-				"Set the desired layer height");
+				"层厚 (mm)", "0.27",
+				"设置层厚");
 
 		addTextParameter(printPanel, "numberOfShells",
-				"Number of shells:", "1",
-				"Number of shells to add to the perimeter of an object. Set this to 0 if you are printing a model with thin features.");
+				"外壳数:", "1",
+				"在物体外增加的外壳数. 打印空心物体时可以设置成2, 打印薄壳物体时可以设置成0");
 
 		addTextParameter(printPanel, "desiredFeedrate",
-				"Feedrate (mm/s)", "41",
-				"slow: 0-20, default: 30, Fast: 40+, Accelerated: 80+");
+				"进给速度 (mm/s)", "41",
+				"慢速: 0-20, 默认: 30, 快速: 40+, 加速: 80+");
 
 		addTextParameter(printPanel, "travelFeedrate",
-				"Travel Feedrate", "56",
-				"slow: 0-20, default: 30, Fast: 50+, Accelerated:150+");
+				"空走速度", "56",
+				"慢速: 0-20, 默认: 30, 快速: 50+, 加速: 150+");
 		
 		addTextParameter(printPanel, "printTemp",
-				"Print temperature ", "220",
-				"220= default, 230=Accelerated");		
+				"喷头温度 ", "220",
+				"220= 默认, 230= 加速");		
 		return printPanel;
 	}
 	
@@ -281,8 +281,8 @@ public class PrintOMatic5D implements SkeinforgePreference {
 		JComponent materialPanel = new JPanel(new MigLayout("fillx"));
 		
 		addTextParameter(materialPanel, "filamentDiameter",
-				"Filament Diameter (mm)", "1.82",
-				"measure feedstock");
+				"丝料直径 (mm)", "1.82",
+				"根据实际的丝料直径来设置");
                 
 //		Vector<String> materialTypes = new Vector<String>();
 //		materialTypes.add("ABS");
@@ -305,8 +305,8 @@ public class PrintOMatic5D implements SkeinforgePreference {
 		JComponent machinePanel = new JPanel(new MigLayout("fillx"));
 		
 		addTextParameter(machinePanel, "desiredPathWidth",
-					"Nozzle Diameter (mm)", "0.4",
-					"Set the desired path width");
+					"喷嘴直径 (mm)", "0.4",
+					"根据实际的喷嘴直径来设置");
 		
 		return machinePanel;
 	}
@@ -315,9 +315,9 @@ public class PrintOMatic5D implements SkeinforgePreference {
 
 		JComponent defaultsPanel = new JPanel(new MigLayout("fillx"));
 
-		final JButton repDefaults = new JButton("Load Replicator Defaults");
-    final JButton tomDefaults = new JButton("Load Thing-o-matic Defaults");
-		final JButton repAccelDefaults = new JButton("Load Accelerated Defaults");
+		final JButton repDefaults = new JButton("载入Creator的默认设置");
+		final JButton tomDefaults = new JButton("载入Adventurer的默认设置");
+		final JButton repAccelDefaults = new JButton("载入加速的默认设置");
 
 		
 		ActionListener loadRepDefaults = new ActionListener(){
@@ -401,10 +401,10 @@ public class PrintOMatic5D implements SkeinforgePreference {
 	// Handles the creation of the various tabs and adds them to printOMatic
 	private void makeTabs()
 	{
-		printOMatic5D.addTab("Settings", generatePrintPanel());
-		printOMatic5D.addTab("Plastic", materialPanel());
-		printOMatic5D.addTab("Extruder", machinePanel());
-		printOMatic5D.addTab("Defaults", defaultsPanel());
+		printOMatic5D.addTab("设置", generatePrintPanel());
+		printOMatic5D.addTab("塑料", materialPanel());
+		printOMatic5D.addTab("喷头", machinePanel());
+		printOMatic5D.addTab("默认", defaultsPanel());
 	}
 	
 
