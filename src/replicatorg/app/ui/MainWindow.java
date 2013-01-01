@@ -1019,7 +1019,7 @@ ToolpathGenerator.GeneratorListener
 	}
 
 	private JMenuItem buildExamplesMenu() {
-		File examplesDir = Base.getApplicationFile("examples");
+		File examplesDir = Base.getApplicationFile("Р§зг");
 		Pattern p = Pattern.compile("[^\\.]*\\.[sS][tT][lL]$");
 		JMenuItem m = buildMenuFromPath(examplesDir,p);
 		if(m == null) {
@@ -1028,7 +1028,7 @@ ToolpathGenerator.GeneratorListener
 			m2.add(new JMenuItem("Check if this dir exists:" + Base.getApplicationFile("examples")));
 			return m2;
 		} else {
-			m.setText("Examples");
+			m.setText("Р§зг");
 			return m;
 		}
 	}

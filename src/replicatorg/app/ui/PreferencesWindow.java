@@ -170,7 +170,7 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 	 * @param driver Needed for the Replicator-specific options
 	 */
 	public PreferencesWindow(final MachineInterface machine) {
-		super("Preferences");
+		super("参数");
 		setResizable(true);
 		
 		Image icon = Base.getImage("images/icon.gif", this);
@@ -184,7 +184,7 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		Container content = basic;
 		content.setLayout(new MigLayout("fill"));
 
-		content.add(new JLabel("MainWindow font size: "), "split");
+		content.add(new JLabel("主窗口字体大小: "), "split");
 		fontSizeField = new JFormattedTextField(Base.getLocalFormat());
 		fontSizeField.setColumns(4);
 		content.add(fontSizeField);
@@ -193,13 +193,13 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		boolean checkTempDuringBuild = Base.preferences.getBoolean("build.monitor_temp", true);
 		boolean displaySpeedWarning = Base.preferences.getBoolean("build.speed_warning", true);
 		
-		addCheckboxForPref(content,"Monitor temperature during builds","build.monitor_temp", checkTempDuringBuild);
-		addCheckboxForPref(content,"Display Accelerated Speed Warnings", "build.speed_warning", displaySpeedWarning);
-		addCheckboxForPref(content,"Automatically connect to machine at startup","replicatorg.autoconnect",true);
-		addCheckboxForPref(content,"Show experimental machine profiles","machine.showExperimental",false);
-		addCheckboxForPref(content,"Review GCode for potential toolhead problems before building","build.safetyChecks",true);
-		addCheckboxForPref(content,"Break Z motion into separate moves (normally false)","replicatorg.parser.breakzmoves",false);
-		addCheckboxForPref(content,"Show starfield in model preview window","ui.show_starfield",false);
+		addCheckboxForPref(content,"打印期间监控温度","build.monitor_temp", checkTempDuringBuild);
+		addCheckboxForPref(content,"显示加速警告", "build.speed_warning", displaySpeedWarning);
+		addCheckboxForPref(content,"启动程序时自动连接机器","replicatorg.autoconnect",true);
+		addCheckboxForPref(content,"显示试验性的机器设置","machine.showExperimental",false);
+		addCheckboxForPref(content,"打印前检查G代码中是否存在与喷头相关的错误","build.safetyChecks",true);
+		addCheckboxForPref(content,"将Z轴运动拆分成不连续的运动(建议不要勾选)","replicatorg.parser.breakzmoves",false);
+		addCheckboxForPref(content,"在模型视图中显示星空","ui.show_starfield",false);
 		addCheckboxForPref(content,"Notifications in System tray","ui.preferSystemTrayNotifications",false);
 		addCheckboxForPref(content,"Automatically regenerate gcode when building from model view.","build.autoGenerateGcode",true);
 		addCheckboxForPref(content,"Use native avrdude for uploading code","uploader.useNative",false);
