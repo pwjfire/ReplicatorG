@@ -274,7 +274,7 @@ public class Build {
 	 */
 	public boolean saveAs() throws IOException {
 		// get new name for folder
-		FileDialog fd = new FileDialog(new Frame(), "Save file as...",
+		FileDialog fd = new FileDialog(new Frame(), "Áí´æÎª...",
 				FileDialog.SAVE);
 		// default to the folder that this file is in
 		fd.setDirectory(folder.getCanonicalPath());

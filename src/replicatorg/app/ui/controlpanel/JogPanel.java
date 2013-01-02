@@ -54,7 +54,7 @@ public class JogPanel extends JPanel implements ActionListener, MouseListener
 	protected Pattern jogPattern;
 
 	protected String[] jogStrings = { "0.01mm", "0.05mm", "0.1mm", "0.5mm",
-			"1mm", "5mm", "10mm", "20mm", "50mm", "Continuous Jog" };
+			"1mm", "5mm", "10mm", "20mm", "50mm", "连续" };
 
 	protected final String jogXMinusAction = "X-";
 	protected final String jogXPlusAction = "X+";
@@ -444,7 +444,7 @@ public class JogPanel extends JPanel implements ActionListener, MouseListener
 	}
 	
 	private void setJogMode(String mode) {
-		if ("Continuous Jog".equals(mode)) {
+		if ("连续".equals(mode)) {
 			if(this.machine.getDriver().hasSoftStop())
 			{
 				continuousJogMode = true;
@@ -469,7 +469,7 @@ public class JogPanel extends JPanel implements ActionListener, MouseListener
 		// create our position panel
 		JPanel positionPanel = new JPanel(new MigLayout("flowy"));
 		// our label
-		positionPanel.add(new JLabel("Jog Mode"),"growx");
+		positionPanel.add(new JLabel("点动模式"),"growx");
 		// create our jog size dropdown
 		JComboBox jogList = new JComboBox(jogStrings);
 		jogList.setSelectedItem(Base.preferences.get(JOGMODE_PREF_NAME,"1mm"));
@@ -484,14 +484,14 @@ public class JogPanel extends JPanel implements ActionListener, MouseListener
 			positionFields.put(axis, f);
 			positionPanel.add(new JLabel(axis.name()),"split 3,flowx");
 			positionPanel.add(f,"growx");
-			JButton centerButton = new JButton("Center "+axis.name());
-			centerButton.setToolTipText("Jog "+axis.name()+" axis to the origin");
+			JButton centerButton = new JButton("居中 "+axis.name());
+			centerButton.setToolTipText("点动 "+axis.name()+" 轴到原点");
 			centerButton.setActionCommand("Center "+axis.name());
 			centerButton.addActionListener(this);
 			positionPanel.add(centerButton);
 		}
-		JButton zeroButton = new JButton("Make current position zero");
-		zeroButton.setToolTipText("Mark Current Position as zero (0,0,0).  Will not move the toolhead.");
+		JButton zeroButton = new JButton("以当前位置为原点");
+		zeroButton.setToolTipText("以当前位置为原点(0,0,0)。不会移动喷头。");
 		zeroButton.setActionCommand("Zero");
 		zeroButton.addActionListener(this);
 		positionPanel.add(zeroButton,"growx");
@@ -601,7 +601,7 @@ public class JogPanel extends JPanel implements ActionListener, MouseListener
 		if(!this.machine.getDriver().hasSoftStop())
 		{
 			List<String> list = new ArrayList<String>(Arrays.asList(jogStrings));
-			list.removeAll(Arrays.asList("Continuous Jog"));
+			list.removeAll(Arrays.asList("连续"));
 			jogStrings = list.toArray(jogStrings);
 		}
 
@@ -609,11 +609,11 @@ public class JogPanel extends JPanel implements ActionListener, MouseListener
 		JPanel feedratePanel = new JPanel(new MigLayout("fill"));
 
 		if (axes.contains(AxisId.X) || axes.contains(AxisId.Y)) {
-			new FeedrateControl("XY Speed",AxisId.X,feedratePanel);
+			new FeedrateControl("XY轴速度",AxisId.X,feedratePanel);
 		}
 
 		if (axes.contains(AxisId.Z)) {
-			new FeedrateControl("Z Speed",AxisId.Z,feedratePanel);
+			new FeedrateControl("Z轴速度",AxisId.Z,feedratePanel);
 		}
 		if (axes.contains(AxisId.A)) {
 			new FeedrateControl("A Speed",AxisId.A,feedratePanel);
@@ -640,7 +640,7 @@ public class JogPanel extends JPanel implements ActionListener, MouseListener
 		add(feedratePanel, "spanx, growx");
 
 		// add jog panel border and stuff.
-		setBorder(BorderFactory.createTitledBorder("Jog Controls"));
+		setBorder(BorderFactory.createTitledBorder("点动控制"));
 	}
 	
 

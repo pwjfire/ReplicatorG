@@ -128,7 +128,7 @@ public class DualStrusionWindow extends JFrame{
 	 * @param s the path of the gcode currently open in RepG
 	 */
 	public DualStrusionWindow(MachineType type, MutableGCodeSource startCode, MutableGCodeSource endCode, String path) {
-		super("DualStrusion Window");
+		super("双头");
 
 		Base.logger.log(Level.FINE, "Dualstrusion window booting up...");
 		
@@ -168,7 +168,7 @@ public class DualStrusionWindow extends JFrame{
 		final JTextField leftToolhead = new JTextField(50);
 		leftToolhead.setText(Base.preferences.get("dualstrusionwindow.leftfile", ""));
 		
-		JButton leftChooserButton = new JButton("Browse...");
+		JButton leftChooserButton = new JButton("浏览...");
 		leftChooserButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				String s = null;
@@ -182,14 +182,14 @@ public class DualStrusionWindow extends JFrame{
 					leftToolhead.setText(s);
 			}
 		});
-		panel.add(new JLabel("Left Extruder"), "split");
+		panel.add(new JLabel("左喷头"), "split");
 		panel.add(leftToolhead,"split, growx");
 		panel.add(leftChooserButton, "wrap");
 
 		final JTextField rightToolhead = new JTextField(50);
 		rightToolhead.setText(Base.preferences.get("dualstrusionwindow.rightfile", ""));
 
-		JButton rightChooserButton = new JButton("Browse...");
+		JButton rightChooserButton = new JButton("浏览...");
 		rightChooserButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				String s = null;
@@ -214,14 +214,14 @@ public class DualStrusionWindow extends JFrame{
 //			}
 //		});
 //		panel.add(switchItem, "wrap");
-		panel.add(new JLabel("Right Extruder"), "split");
+		panel.add(new JLabel("右喷头"), "split");
 		panel.add(rightToolhead,"split, growx");
 		panel.add(rightChooserButton, "wrap");
 
 		final JTextField destinationTextField = new JTextField(50);
 		destinationTextField.setText(Base.preferences.get("dualstrusionwindow.destfile", ""));
 
-		JButton destinationChooserButton = new JButton("Browse...");
+		JButton destinationChooserButton = new JButton("浏览...");
 		destinationChooserButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0) {
@@ -266,7 +266,7 @@ public class DualStrusionWindow extends JFrame{
 			}
 
 		});
-		panel.add(new JLabel("Save As: "), "split");
+		panel.add(new JLabel("保存为: "), "split");
 		panel.add(destinationTextField, "split, growx");
 		panel.add(destinationChooserButton, "wrap");
 		
@@ -277,7 +277,7 @@ public class DualStrusionWindow extends JFrame{
 //		panel.add(useWipes, "wrap");
 		
 		//Merge
-		JButton merge = new JButton("Merge");
+		JButton merge = new JButton("合成");
 
 		merge.addActionListener(new ActionListener() {
 			@Override
@@ -370,13 +370,13 @@ public class DualStrusionWindow extends JFrame{
 
 		});
 		panel.add(merge, "split");
-		final JButton help = new JButton("Help");
+		final JButton help = new JButton("帮助");
 		help.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				try {
-					Desktop.getDesktop().browse(new URI("http://goo.gl/DV5vn"));
+					Desktop.getDesktop().browse(new URI("http://www.sz3dp.com/帮助-help/creator系列/双头打印/"));
 					//That goo.gl redirects to http://www.makerbot.com/docs/dualstrusion I just wanted to build in a convenient to track how many press the help button
 				} catch (Exception e)
 				{

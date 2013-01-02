@@ -90,16 +90,16 @@ public class FindReplace extends JFrame implements ActionListener {
 	boolean found;
 
 	public FindReplace(MainWindow editor) {
-		super("Find");
+		super("查找");
 		setResizable(false);
 		this.editor = editor;
 
 		Container pain = getContentPane();
 		pain.setLayout(null);
 
-		JLabel findLabel = new JLabel("Find:");
+		JLabel findLabel = new JLabel("查找:");
 		Dimension d0 = findLabel.getPreferredSize();
-		JLabel replaceLabel = new JLabel("Replace with:");
+		JLabel replaceLabel = new JLabel("以此替换:");
 		Dimension d1 = replaceLabel.getPreferredSize();
 
 		pain.add(findLabel);
@@ -125,7 +125,7 @@ public class FindReplace extends JFrame implements ActionListener {
 				d1.height);
 
 		// ignoreCase = true;
-		ignoreCaseBox = new JCheckBox("Ignore Case");
+		ignoreCaseBox = new JCheckBox("忽略大小写");
 		ignoreCaseBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ignoreCase = ignoreCaseBox.isSelected();
@@ -147,10 +147,10 @@ public class FindReplace extends JFrame implements ActionListener {
 			buttons.add(findButton = new JButton("Find"));
 
 		} else {
-			buttons.add(findButton = new JButton("Find"));
-			buttons.add(replaceFindButton = new JButton("Replace & Find"));
-			buttons.add(replaceButton = new JButton("Replace"));
-			buttons.add(replaceAllButton = new JButton("Replace All"));
+			buttons.add(findButton = new JButton("查找"));
+			buttons.add(replaceFindButton = new JButton("替换和查找"));
+			buttons.add(replaceButton = new JButton("替换"));
+			buttons.add(replaceAllButton = new JButton("替换所有"));
 		}
 		pain.add(buttons);
 

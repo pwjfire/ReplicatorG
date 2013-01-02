@@ -100,7 +100,7 @@ public class ControlPanelWindow extends JFrame implements
 	
 	private JColorChooser chooser ;
 	
-	private JButton ledStripButton;
+//	private JButton ledStripButton;
 
 	public static synchronized ControlPanelWindow getControlPanel(MachineInterface machine2) {
 		if (instance == null) {
@@ -115,7 +115,7 @@ public class ControlPanelWindow extends JFrame implements
 	}
 	
 	private ControlPanelWindow(MachineInterface newMachine) {
-		super("Control Panel");
+		super("控制面板");
 
 		Image icon = Base.getImage("images/icon.gif", this);
 		setIconImage(icon);
@@ -153,12 +153,12 @@ public class ControlPanelWindow extends JFrame implements
 				g.setColor(ledColor);
 				g.fillRect(0,0,10,10);
 				//image.getGraphics().fillRect(0,0,10,10);
-				ledStripButton.setIcon(new ImageIcon(image));
+//				ledStripButton.setIcon(new ImageIcon(image));
 			}
 		};
 		
-		ledStripButton = new JButton(new ShowColorChooserAction(this, chooser, okListener, null,Color.BLACK));
-		ledStripButton.setText("LED Color");
+//		ledStripButton = new JButton(new ShowColorChooserAction(this, chooser, okListener, null,Color.BLACK));
+//		ledStripButton.setText("LED Color");
 		
 		// create all our GUI interfaces
 		mainPanel = new JPanel();
@@ -169,7 +169,7 @@ public class ControlPanelWindow extends JFrame implements
 		mainPanel.add(createActivationPanel(),"split, growx");
 		if((newMachine.getMachineType() == MachineType.THE_REPLICATOR) || (newMachine.getMachineType() == MachineType.REPLICATOR_2))
 		{
-			mainPanel.add(ledStripButton ,"growx");
+//			mainPanel.add(ledStripButton ,"growx");
 //			mainPanel.add(createBeepPanel(), "growx");
 		}
 		mainPanel.add(alternateToolsPanel(),"newline, growy");
@@ -207,7 +207,7 @@ public class ControlPanelWindow extends JFrame implements
 
 	protected JMenuBar createMenuBar() {
 		JMenuBar bar = new JMenuBar();
-		JMenu homeMenu = new JMenu("Homing");
+		JMenu homeMenu = new JMenu("回零");
 		bar.add(homeMenu);
 		
 		//adding the appropriate homing options for your endstop configuration
@@ -280,12 +280,12 @@ public class ControlPanelWindow extends JFrame implements
 	protected JComponent createActivationPanel() {
 		JPanel activationPanel = new JPanel();
 		activationPanel.setBorder(BorderFactory
-				.createTitledBorder("Stepper Motor Controls"));
+				.createTitledBorder("步进电机控制"));
 		activationPanel.setLayout(new BoxLayout(activationPanel,
 				BoxLayout.LINE_AXIS));
 
 		// / Enable/disable steppers.
-		JButton enableButton = new JButton("Enable");
+		JButton enableButton = new JButton("使能");
 		enableButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				machine.runCommand(new replicatorg.drivers.commands.EnableDrives());
@@ -293,7 +293,7 @@ public class ControlPanelWindow extends JFrame implements
 		});
 		activationPanel.add(enableButton);
 
-		JButton disableButton = new JButton("Disable");
+		JButton disableButton = new JButton("关闭使能");
 		disableButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				machine.runCommand(new replicatorg.drivers.commands.DisableDrives());

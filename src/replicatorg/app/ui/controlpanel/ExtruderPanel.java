@@ -213,7 +213,7 @@ public class ExtruderPanel extends JPanel{
 
 	
 	private void setExtrudeTime(String mode) {
-		if ("Continuous Jog".equals(mode)) {
+		if ("连续".equals(mode)) {
 			continuousJogMode = true;
 			extrudeTime = 0;
 		} else {
@@ -281,7 +281,7 @@ public class ExtruderPanel extends JPanel{
 
 			if (tool.motorHasEncoder() || tool.motorIsStepper()) {
 				// our motor speed vars
-				JLabel label = makeLabel("Motor Speed (RPM)");
+				JLabel label = makeLabel("电机转速(RPM)");
 
 				JFormattedTextField field = new CallbackTextField(new ActionListener(){
 					@Override
@@ -299,7 +299,7 @@ public class ExtruderPanel extends JPanel{
 				panel.add(field,"wrap");
 
 				if (tool.getMotorStepperAxisName() != "") {
-					label = makeLabel("Extrude duration");
+					label = makeLabel("持续时间");
 
 					JComboBox timeList = new JComboBox(extrudeTimeStrings);
 					timeList.setSelectedItem(Base.preferences.get(EXTRUDE_TIME_PREF_NAME,"5s"));
@@ -312,19 +312,19 @@ public class ExtruderPanel extends JPanel{
 			}
 			
 			// create our motor options
-			JLabel motorEnabledLabel = makeLabel("Motor Control");
+			JLabel motorEnabledLabel = makeLabel("电机控制");
 			
 			if (tool.motorHasEncoder() || (tool.motorIsStepper() && tool.getMotorStepperAxisName() != "")) {
 
-				JButton motorReverseButton = new JButton("reverse");
+				JButton motorReverseButton = new JButton("反转");
 				motorReverseButton.setActionCommand("reverse");
 				motorReverseButton.addActionListener(actionListener);
 
-				JButton motorStoppedButton = new JButton("stop");
+				JButton motorStoppedButton = new JButton("停止");
 				motorStoppedButton.setActionCommand("stop");
 				motorStoppedButton.addActionListener(actionListener);
 
-				JButton motorForwardButton = new JButton("forward");
+				JButton motorForwardButton = new JButton("正转");
 				motorForwardButton.setActionCommand("forward");
 				motorForwardButton.addActionListener(actionListener);
 
@@ -419,8 +419,8 @@ public class ExtruderPanel extends JPanel{
 		{
 			JTabbedPane motorTabs = new JTabbedPane();
 
-			final String tool0Name = tool0.getName() + " Plastic Extruder";
-			final String tool1Name = tool1.getName() + " Plastic Extruder";
+			final String tool0Name = tool0.getName() + " 喷头";
+			final String tool1Name = tool1.getName() + " 喷头";
 			// Left on the left
 			if(tool0.getIndex() == 0) {
 				motorTabs.addTab(tool1Name, getMotorControls(tool1));
@@ -436,17 +436,17 @@ public class ExtruderPanel extends JPanel{
 		
 		// The temperature display
 		JPanel temperaturePanel = new JPanel(new MigLayout("fillx, filly"));
-		temperaturePanel.setBorder(BorderFactory.createTitledBorder("Extruder Temperature Controls"));
+		temperaturePanel.setBorder(BorderFactory.createTitledBorder("喷头温度控制"));
 		
 		if(tool0 != null)
 		{
 			if (tool0.hasHeater()) {
-				JLabel targetTempLabel = makeKeyLabel("<html>"+tool0.getName()+" Target (&deg;C)</html>",t0TargetColor);
+				JLabel targetTempLabel = makeKeyLabel("<html>"+tool0.getName()+" 目标 (&deg;C)</html>",t0TargetColor);
 				
 				t0TargetTemperatureField = new CallbackTextField(temperatureListener, "handleTextField", "target-temp", 5, Base.getLocalFormat());
 				t0TargetTemperatureField.setValue(tool0.getTargetTemperature());
 				
-				JLabel currentTempLabel = makeKeyLabel("<html>"+tool0.getName()+" Current (&deg;C)</html>",t0MeasuredColor);
+				JLabel currentTempLabel = makeKeyLabel("<html>"+tool0.getName()+" 实际 (&deg;C)</html>",t0MeasuredColor);
 				t0CurrentTemperatureField = new JFormattedTextField(Base.getLocalFormat());
 				t0CurrentTemperatureField.setColumns(5);
 				t0CurrentTemperatureField.setEnabled(false);
@@ -460,12 +460,12 @@ public class ExtruderPanel extends JPanel{
 		if(tool1 != null)
 		{
 			if (tool1.hasHeater()) {
-				JLabel targetTempLabel = makeKeyLabel("<html>"+tool1.getName()+" Target (&deg;C)</html>",t1TargetColor);
+				JLabel targetTempLabel = makeKeyLabel("<html>"+tool1.getName()+" 目标 (&deg;C)</html>",t1TargetColor);
 				
 				t1TargetTemperatureField = new CallbackTextField(temperatureListener, "handleTextField", "target-temp", 5, Base.getLocalFormat());
 				t1TargetTemperatureField.setValue(tool1.getTargetTemperature());
 				
-				JLabel currentTempLabel = makeKeyLabel("<html>"+tool1.getName()+" Current (&deg;C)</html>",t1MeasuredColor);
+				JLabel currentTempLabel = makeKeyLabel("<html>"+tool1.getName()+" 实际 (&deg;C)</html>",t1MeasuredColor);
 				t1CurrentTemperatureField = new JFormattedTextField(Base.getLocalFormat());
 				t1CurrentTemperatureField.setColumns(5);
 				t1CurrentTemperatureField.setEnabled(false);
@@ -482,12 +482,12 @@ public class ExtruderPanel extends JPanel{
 			// Get the tool with the HBP
 			ToolModel tool = tool0.hasHeatedPlatform() ? tool0 : tool1;
 			
-			JLabel targetTempLabel = makeKeyLabel("<html>Platform Target (&deg;C)</html>",pTargetColor);
+			JLabel targetTempLabel = makeKeyLabel("<html>加热板目标 (&deg;C)</html>",pTargetColor);
 			
 			pTargetTemperatureField = new CallbackTextField(temperatureListener, "handleTextField", "platform-target-temp", 5, Base.getLocalFormat());
 			pTargetTemperatureField.setValue(tool.getPlatformTargetTemperature());
 
-			JLabel currentTempLabel = makeKeyLabel("<html>Platform Current (&deg;C)</html>",pMeasuredColor);
+			JLabel currentTempLabel = makeKeyLabel("<html>加热板实际 (&deg;C)</html>",pMeasuredColor);
 			
 			pCurrentTemperatureField = new JFormattedTextField(Base.getLocalFormat());
 			pCurrentTemperatureField.setColumns(5);
@@ -500,7 +500,7 @@ public class ExtruderPanel extends JPanel{
 		}
 		
 		
-		temperaturePanel.add(new JLabel("Temperature Chart"),"growx,spanx,wrap");
+		temperaturePanel.add(new JLabel("温度图"),"growx,spanx,wrap");
 		temperaturePanel.add(makeChart(),"growx, growy, spanx, wrap");
 		add(temperaturePanel, "growx, growy");
 	}

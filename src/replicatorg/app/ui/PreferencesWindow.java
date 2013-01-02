@@ -103,14 +103,14 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		    	Base.preferences.putInt(prefName,behavior.ordinal());
 		    }
 		}
-		c.add(new JLabel("On ReplicatorG launch:"),"split");
+		c.add(new JLabel("在ReplicatorG启动时:"),"split");
 		// We don't have SELECTED_KEY in Java 1.5, so we'll do things the old-fashioned, ugly way.
 		JRadioButton b;
-		b = new JRadioButton(new RadioAction("Open last opened or saved file",InitialOpenBehavior.OPEN_LAST));
+		b = new JRadioButton(new RadioAction("打开最近一次打开或保存的文件",InitialOpenBehavior.OPEN_LAST));
     	if (InitialOpenBehavior.OPEN_LAST == openBehavior) { b.setSelected(true); }
 		bg.add(b);
 		c.add(b,"split");
-		b = new JRadioButton(new RadioAction("Open new file",InitialOpenBehavior.OPEN_NEW));
+		b = new JRadioButton(new RadioAction("打开新文件",InitialOpenBehavior.OPEN_NEW));
     	if (InitialOpenBehavior.OPEN_NEW == openBehavior) { b.setSelected(true); }
 		bg.add(b);
 		c.add(b,"wrap 10px");
@@ -188,7 +188,7 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		fontSizeField = new JFormattedTextField(Base.getLocalFormat());
 		fontSizeField.setColumns(4);
 		content.add(fontSizeField);
-		content.add(new JLabel("  (requires restart of ReplicatorG)"), "wrap");
+		content.add(new JLabel("  (需要重启ReplicatorG)"), "wrap");
 
 		boolean checkTempDuringBuild = Base.preferences.getBoolean("build.monitor_temp", true);
 		boolean displaySpeedWarning = Base.preferences.getBoolean("build.speed_warning", true);
@@ -200,23 +200,23 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		addCheckboxForPref(content,"打印前检查G代码中是否存在与喷头相关的错误","build.safetyChecks",true);
 		addCheckboxForPref(content,"将Z轴运动拆分成不连续的运动(建议不要勾选)","replicatorg.parser.breakzmoves",false);
 		addCheckboxForPref(content,"在模型视图中显示星空","ui.show_starfield",false);
-		addCheckboxForPref(content,"Notifications in System tray","ui.preferSystemTrayNotifications",false);
-		addCheckboxForPref(content,"Automatically regenerate gcode when building from model view.","build.autoGenerateGcode",true);
-		addCheckboxForPref(content,"Use native avrdude for uploading code","uploader.useNative",false);
+		addCheckboxForPref(content,"在系统托盘中显示通知","ui.preferSystemTrayNotifications",false);
+		addCheckboxForPref(content,"从模型视图启动时，自动重新生成G代码","build.autoGenerateGcode",true);
+		addCheckboxForPref(content,"使用附带的avrdude来上传固件","uploader.useNative",false);
 
 		JPanel advanced = new JPanel();
 		content = advanced;
 		content.setLayout(new MigLayout("fill"));
 		
 		JButton modelColorButton;
-		modelColorButton = new JButton("Choose model color");
+		modelColorButton = new JButton("选择模型颜色");
 		modelColorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Note that this color is also defined in EditingModel.java
 				Color modelColor = new Color(Base.preferences.getInt("ui.modelColor",-19635));
 				modelColor = JColorChooser.showDialog(
 						null,
-		                "Choose Model Color",
+		                "选择模型颜色",
 		                modelColor);
 		        if(modelColor == null)
 		        	return;
@@ -230,14 +230,14 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		
 		
 		JButton backgroundColorButton;
-		backgroundColorButton = new JButton("Choose background color");
+		backgroundColorButton = new JButton("选择背景颜色");
 		backgroundColorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Note that this color is also defined in EditingModel.java
 				Color backgroundColor = new Color(Base.preferences.getInt("ui.backgroundColor", 0));
 				backgroundColor = JColorChooser.showDialog(
 						null,
-		                "Choose Background Color",
+		                "选择背景颜色",
 		                backgroundColor);
 		        if(backgroundColor == null)
 		        	return;
@@ -250,20 +250,20 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		content.add(backgroundColorButton,"wrap");
 		
 		
-		content.add(new JLabel("Firmware update URL: "),"split");
+		content.add(new JLabel("固件升级网址: "),"split");
 		firmwareUpdateUrlField = new JTextField(34);
 		content.add(firmwareUpdateUrlField,"growx, wrap");
 
 		{
-			JLabel arcResolutionLabel = new JLabel("Arc resolution (in mm): ");
+			JLabel arcResolutionLabel = new JLabel("圆弧分辨率(mm): ");
 			content.add(arcResolutionLabel,"split");
 			double value = Base.preferences.getDouble("replicatorg.parser.curve_segment_mm", 1.0);
 			JFormattedTextField arcResolutionField = new JFormattedTextField(Base.getLocalFormat());
 			arcResolutionField.setValue(new Double(value));
 			content.add(arcResolutionField);
 			String arcResolutionHelp = "<html><small><em>" +
-				"The arc resolution is the default segment length that the gcode parser will break arc codes <br>"+
-				"like G2 and G3 into.  Drivers that natively handle arcs will ignore this setting." +
+				"G代码解析器会将圆弧分解成线段<br>"+
+				"圆弧分辨率指的是这个线段的默认长度" +
 				"</em></small></html>";
 			arcResolutionField.setToolTipText(arcResolutionHelp);
 			arcResolutionLabel.setToolTipText(arcResolutionHelp);
@@ -285,16 +285,16 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		}
 		
 		{
-			JLabel sfTimeoutLabel = new JLabel("Skeinforge timeout: ");
+			JLabel sfTimeoutLabel = new JLabel("Skeinforge超时时长: ");
 			content.add(sfTimeoutLabel,"split, gap unrelated");
 			int value = Base.preferences.getInt("replicatorg.skeinforge.timeout", -1);
 			JFormattedTextField sfTimeoutField = new JFormattedTextField(Base.getLocalFormat());
 			sfTimeoutField.setValue(new Integer(value));
 			content.add(sfTimeoutField,"wrap 10px, growx");
 			String sfTimeoutHelp = "<html><small><em>" +
-				"The Skeinforge timeout is the number of seconds that replicatorg will wait while the<br>" +
-				"Skeinforge preferences window is open. If you find that RepG freezes after editing profiles<br>" +
-				"you can set this number greater than -1 (-1 means no timeout)." +
+				"Skeinforge超时时长是在此参数窗口打开时，<br>" +
+				"replicatorg将会等待的时长。如果您发现编辑了设置后ReplicatorG会有停顿现象，<br>" +
+				"您可以把这个数值设置到>-1(-1意味着没有超时时长)" +
 				"</em></small></html>";
 			sfTimeoutField.setToolTipText(sfTimeoutHelp);
 			sfTimeoutLabel.setToolTipText(sfTimeoutHelp);
@@ -316,10 +316,10 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		}
 		
 		{
-			content.add(new JLabel("Debugging level (default INFO):"),"split");
+			content.add(new JLabel("调试级别(默认是INFO):"),"split");
 			content.add(makeDebugLevelDropdown(), "wrap");
 
-			final JCheckBox logCb = new JCheckBox("Log to file");
+			final JCheckBox logCb = new JCheckBox("Log到文件");
 			logCb.setSelected(Base.preferences.getBoolean("replicatorg.useLogFile",false));
 			content.add(logCb, "split");
 			logCb.addActionListener(new ActionListener() {
@@ -328,7 +328,7 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 				}
 			});
 			
-			final JLabel logPathLabel = new JLabel("Log file name: "); 
+			final JLabel logPathLabel = new JLabel("Log文件名: "); 
 			content.add(logPathLabel,"split");
 			logPathField = new JTextField(34);
 			content.add(logPathField,"growx, wrap 10px");
@@ -352,7 +352,7 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 			final String tooltipPlatform = "Set preheat temperature for the build platfom";
 			
 			
-			final JCheckBox preheatCb = new JCheckBox("Preheat builds");
+			final JCheckBox preheatCb = new JCheckBox("打印前预热");
 			preheatCb.setToolTipText(tooltipGeneral);
 			content.add(preheatCb, "split");
 			
@@ -364,9 +364,9 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 			});
 			preheatCb.setSelected(Base.preferences.getBoolean("build.doPreheat", false));
 			
-			final JLabel t0Label = new JLabel("Toolhead Right: ");
-			final JLabel t1Label = new JLabel("Toolhead Left: ");
-			final JLabel pLabel = new JLabel("Platform: ");
+			final JLabel t0Label = new JLabel("右喷头: ");
+			final JLabel t1Label = new JLabel("左喷头: ");
+			final JLabel pLabel = new JLabel("加热平台: ");
 			
 			Integer t0Value = Base.preferences.getInt("build.preheatTool0", defaultTemp);
 			Integer t1Value = Base.preferences.getInt("build.preheatTool1", defaultTemp);
@@ -439,7 +439,7 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		}
 		
 		{
-			JButton b = new JButton("Select Python interpreter...");
+			JButton b = new JButton("选择Python解析器...");
 			content.add(b,"spanx,wrap 10px");
 			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -454,15 +454,15 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		
 		addInitialFilePrefs(content);
 		
-		prefTabs.add(basic, "Basic");
-		prefTabs.add(advanced, "Advanced");
+		prefTabs.add(basic, "基本");
+		prefTabs.add(advanced, "高级");
 
 		content = getContentPane();
 		content.setLayout(new MigLayout());
 		
 		content.add(prefTabs, "wrap");
 		
-		JButton allPrefs = new JButton("View Preferences Table");
+		JButton allPrefs = new JButton("查看参数列表");
 		content.add(allPrefs, "split");
 		allPrefs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -472,7 +472,7 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		});
 
 		// Also available as a menu item in the main gui.
-		JButton delPrefs = new JButton("Reset all preferences");
+		JButton delPrefs = new JButton("重设所有参数");
 		content.add(delPrefs);
 		delPrefs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -481,7 +481,7 @@ public class PreferencesWindow extends JFrame implements GuiConstants {
 		});
 		
 		JButton button;
-		button = new JButton("Close");
+		button = new JButton("关闭");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				applyFrame();

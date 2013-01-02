@@ -58,7 +58,7 @@ public class MachineStatusPanel extends BGPanel implements MachineListener {
 		tempLabel.setFont(smallFont);
 		machineLabel.setFont(smallFont);
 		mainLabel.setFont(statusFont);
-		mainLabel.setText("Not Connected");
+		mainLabel.setText("未连接");
 	
 		setLayout(new MigLayout("fill,novisualpadding, ins 5 10 5 10"));
 		add(mainLabel, "top, left, growx, split");
@@ -98,7 +98,7 @@ public class MachineStatusPanel extends BGPanel implements MachineListener {
 			String connection = Base.preferences.get("serial.last_selected", "Unknown Connection");
 			machineText += " on " + connection;
 		} else {
-			machineText += " Not Connected";
+			machineText += " 未连接";
 		}
 		return machineText;
 	}

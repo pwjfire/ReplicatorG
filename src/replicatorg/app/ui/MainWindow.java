@@ -177,7 +177,7 @@ ToolpathGenerator.GeneratorListener
 	 */
 	private static final long serialVersionUID = 4144538738677712284L;
 
-	static final String WINDOW_TITLE = "ReplicatorG" + " - " + Base.VERSION_NAME;
+	static final String WINDOW_TITLE = "ReplicatorG" + " - " + Base.VERSION_NAME + "闪铸汉化版";
 
 
 	final static String MODEL_TAB_KEY = "模型";
@@ -739,12 +739,12 @@ ToolpathGenerator.GeneratorListener
 		if (names.isEmpty()) {
 			// Be aware that there is code in machineStateChanged that relies on this string
 			// I know it's a hack, but it works
-			JMenuItem item = new JMenuItem("No serial ports detected");
+			JMenuItem item = new JMenuItem("未检测到串口");
 			item.setEnabled(false);
 			serialMenu.add(item);
 		}
 		serialMenu.addSeparator();
-		JMenuItem item = new JMenuItem("Rescan serial ports");
+		JMenuItem item = new JMenuItem("重新扫描串口");
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				reloadSerialMenu();
@@ -833,7 +833,7 @@ ToolpathGenerator.GeneratorListener
 
 		menu.addSeparator();
 		menu.add(buildExamplesMenu()); 
-		menu.add(buildScriptsMenu()); 
+//		menu.add(buildScriptsMenu()); 
 
 		JMenuItem resetParamsItem = new JMenuItem("重设所有参数");
 		resetParamsItem.addActionListener(new ActionListener() {
@@ -963,7 +963,7 @@ ToolpathGenerator.GeneratorListener
                         		JOptionPane.DEFAULT_OPTION, null, null, null);
 		                pane.setInitialValue(null);
 				pane.setComponentOrientation(MainWindow.this.getComponentOrientation());
-				JDialog dialog = pane.createDialog(MainWindow.this, "Supported GCodes");
+				JDialog dialog = pane.createDialog(MainWindow.this, "支持的G代码");
 				pane.selectInitialValue();
 				dialog.setResizable(true); // since the list is long, make the dialog resizeable
 				dialog.setVisible(true);
@@ -2484,7 +2484,7 @@ ToolpathGenerator.GeneratorListener
 		for (int itemIndex = 0; itemIndex < serialMenu.getItemCount(); itemIndex++) { 
 			JMenuItem item = serialMenu.getItem(itemIndex);
 			// The ignore case is a little hacky, and is based on code in reloadSerialMenu()
-			if  (item != null && !("No serial ports detected".equals(item.getText()))) {
+			if  (item != null && !("未检测到串口".equals(item.getText()))) {
 				item.setEnabled(!evt.getState().isConnected());
 			}
 		}
@@ -2982,7 +2982,7 @@ ToolpathGenerator.GeneratorListener
 		fc.addChoosableFileFilter(new ExtensionFilter(".dae","Collada files (experimental)"));
 		fc.setAcceptAllFileFilterUsed(true);
 		fc.setFileFilter(defaultFilter);
-		fc.setDialogTitle("Open a gcode or model file...");
+		fc.setDialogTitle("打开一个模型或者G代码文件...");
 		fc.setDialogType(JFileChooser.OPEN_DIALOG);
 		fc.setFileHidingEnabled(false);
 		int rv = fc.showOpenDialog(this);
@@ -3305,7 +3305,7 @@ ToolpathGenerator.GeneratorListener
 		public TextAreaPopup() {
 			JMenuItem item;
 
-			cutItem = new JMenuItem("Cut");
+			cutItem = new JMenuItem("剪切");
 			cutItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					textarea.cut();
@@ -3314,7 +3314,7 @@ ToolpathGenerator.GeneratorListener
 			});
 			this.add(cutItem);
 
-			copyItem = new JMenuItem("Copy");
+			copyItem = new JMenuItem("复制");
 			copyItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					textarea.copy();
@@ -3322,7 +3322,7 @@ ToolpathGenerator.GeneratorListener
 			});
 			this.add(copyItem);
 
-			item = new JMenuItem("Paste");
+			item = new JMenuItem("粘贴");
 			item.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					textarea.paste();
@@ -3331,7 +3331,7 @@ ToolpathGenerator.GeneratorListener
 			});
 			this.add(item);
 
-			item = new JMenuItem("Select All");
+			item = new JMenuItem("全选");
 			item.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					textarea.selectAll();

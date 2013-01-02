@@ -29,7 +29,7 @@ public class InfoPanel extends JFrame {
     JTextArea infoArea;
 	
 	public InfoPanel() {
-		super("About this Machine");
+		super("关于本机");
 		setLayout(new MigLayout("fill"));
 
 		infoArea = new JTextArea("ReplicatorG:",40,80);
