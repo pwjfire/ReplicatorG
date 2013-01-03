@@ -243,7 +243,7 @@ public class ExtruderOnboardParameters extends JPanel {
 	    private JFormattedTextField pField = new JFormattedTextField(eightPlaces);
       private JFormattedTextField iField = new JFormattedTextField(eightPlaces);
       private JFormattedTextField dField = new JFormattedTextField(eightPlaces);
-      private JButton commitButton = new JButton("Commit Changes");
+      private JButton commitButton = new JButton("提交更改");
       private JLabel commit_text = new JLabel("");
       private final int which;
       //private final ToolModel tool;
@@ -258,11 +258,11 @@ public class ExtruderOnboardParameters extends JPanel {
         iField.setColumns(FIELD_WIDTH);
         dField.setColumns(FIELD_WIDTH);
 
-        add(new JLabel("P parameter"));
+        add(new JLabel("P参数"));
         add(pField,"wrap");
-        add(new JLabel("I parameter"));
+        add(new JLabel("I参数"));
         add(iField,"wrap");
-        add(new JLabel("D parameter"));
+        add(new JLabel("D参数"));
         add(dField,"wrap");
         OnboardParameters.PIDParameters pp = target.getPIDParameters(which, toolIndex);
         pField.setValue(pp.p);
@@ -357,7 +357,7 @@ public class ExtruderOnboardParameters extends JPanel {
 		
 		if(tool.hasExtruderThermocouple())
 		{
-			PIDPanel pidPanel = new PIDPanel(OnboardParameters.EXTRUDER,"Extruder PID parameters", toolIndex);
+			PIDPanel pidPanel = new PIDPanel(OnboardParameters.EXTRUDER,"喷头PID参数", toolIndex);
 			this.add(pidPanel,"growx");
 			commitList.add(pidPanel);
 		}	
@@ -379,7 +379,7 @@ public class ExtruderOnboardParameters extends JPanel {
 			machineType.equals("The Replicator") || 
 			machineType.equals("MightyBoard(unverified)")))
 		{
-			JButton commitButton = new JButton("Commit Changes");
+			JButton commitButton = new JButton("提交更改");
 			commitButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (ExtruderOnboardParameters.this.commit()) {

@@ -206,15 +206,16 @@ class MachineThread extends Thread {
 	}
 	
 	private String readyMessage() {
-		return "Machine " + getMachineName() + " ready";
+//		return "机器 " + getMachineName() + " 就绪";
+		return "机器 " + " 准备就绪";
 	}
 	
 	private String notConnectedMessage() {
-		return "Not Connected";
+		return "未连接";
 	}
 	
 	private String buildingMessage() {
-		return "Building...";
+		return "打印...";
 	}
 	
 	// Respond to a command from the machine controller
@@ -225,7 +226,7 @@ class MachineThread extends Thread {
 				
 				// TODO: This message doesn't take an explicit override into account.
 				setState(new MachineState(MachineState.State.CONNECTING),
-						"Connecting to " + getMachineName() + " on " + command.remoteName);
+						"正在连接 " + command.remoteName);
 				
 				boolean connected = false;
 				
@@ -288,7 +289,7 @@ class MachineThread extends Thread {
 			else { 
 				//TRICKY: in this case way may be disconnected, and re-advertising disconnected. 
 				//setState() will ignore the duplicate state, so we dircetly emit.
-				controller.emitStateChange(new MachineState(MachineState.State.NOT_ATTACHED), "Not Connected");
+				controller.emitStateChange(new MachineState(MachineState.State.NOT_ATTACHED), "未连接");
 			}
 
 			break;

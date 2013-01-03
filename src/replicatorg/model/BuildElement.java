@@ -49,8 +49,8 @@ public abstract class BuildElement {
 	protected Build parent = null;
 		
 	public enum Type {
-		MODEL("model"),
-		GCODE("gcode");
+		MODEL("Ä£ÐÍ"),
+		GCODE("G´úÂë");
 		
 		private String displayString;
 		Type(String displayString) { this.displayString = displayString; }

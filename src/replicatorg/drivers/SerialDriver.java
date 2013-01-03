@@ -79,7 +79,7 @@ public class SerialDriver extends DriverBaseImplementation implements UsesSerial
 		} catch (SerialException e) {
 			String msg = e.getMessage();
 			Base.logger.severe("Connection error: " + msg);
-			setError("Connection error: " + msg);
+			setError("Á¬½Ó´íÎó: " + msg);
 		}
 
 		if (newConnection != null) {

@@ -177,7 +177,7 @@ ToolpathGenerator.GeneratorListener
 	 */
 	private static final long serialVersionUID = 4144538738677712284L;
 
-	static final String WINDOW_TITLE = "ReplicatorG" + " - " + Base.VERSION_NAME + "闪铸汉化版";
+	static final String WINDOW_TITLE = "ReplicatorG" + "-" + Base.VERSION_NAME + "-闪铸汉化版";
 
 
 	final static String MODEL_TAB_KEY = "模型";
@@ -503,8 +503,8 @@ ToolpathGenerator.GeneratorListener
 	 */
 	public void resetPreferences() {
 		int option = JOptionPane.showConfirmDialog(this, 
-				"This will delete all your current preference settings and customizations,\nand immediately exit ReplicatorG. Are you sure?",
-				"Reset preferences and reset?",
+				"删除您的所有当前设置，\n并马上退出ReplicatorG。你确定？",
+				"重设所有参数并重启？",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if (option == JOptionPane.NO_OPTION) { return; }
 		if (option == JOptionPane.YES_OPTION) {
@@ -1123,6 +1123,7 @@ ToolpathGenerator.GeneratorListener
 		}
 		menu.add(genMenu);
 
+/*
 		// BASE PROFILES
 		profilesMenuItem = newJMenuItem("编辑切片配置...", 'R');
 		profilesMenuItem.addActionListener(new ActionListener() {
@@ -1132,7 +1133,7 @@ ToolpathGenerator.GeneratorListener
 		});
 		profilesMenuItem.setEnabled(true);
 		menu.add(profilesMenuItem);
-
+*/
 		menu.addSeparator();
 		
 		//Change Toolhead of GCode
@@ -1555,14 +1556,15 @@ ToolpathGenerator.GeneratorListener
 		}
 		
 
-		String[] mBots = {"Cupcake", "Thingomatic", "Replicator"};
+//		String[] mBots = {"Cupcake", "Thingomatic", "Replicator"};
+		String[] mBots = {"Creator"};
 		for(String bot : mBots)
 		{
 			moveTypeToHead(names, bot);
 		}
 		
 		ButtonGroup botButtons = new ButtonGroup();
-		JMenu otherBotMenu = new JMenu("Other Bots");
+		JMenu otherBotMenu = new JMenu("其他打印机");
 		for (String name : names ) {
 
 			JRadioButtonMenuItem item = new JRadioButtonMenuItem(name);
@@ -2543,10 +2545,12 @@ ToolpathGenerator.GeneratorListener
 		infoPanelItem.setEnabled(true);
 
 		// Advertise machine name
-		String name = "Not Connected";
+		String name = "未连接";
 		if (evt.getState().isConnected() && machineLoader.isLoaded()) {
 			name = machineLoader.getMachineInterface().getMachineName();
 		}
+
+		name = null;
 		if (name != null) {
 			this.setTitle(name + " - " + WINDOW_TITLE);
 		} else {
@@ -2589,11 +2593,11 @@ ToolpathGenerator.GeneratorListener
 		long elapsed = finished.getTime() - started.getTime();
 
 		String time_string = EstimationDriver.getBuildTimeString(elapsed);
-		String message = "Build finished.\n\nCompleted in "	+ time_string;
+		String message = "打印结束.\n\n耗时 "	+ time_string;
 
 		maybeRunScript("scripts/complete.sh", handleOpenPath, String.valueOf(elapsed / 1000), time_string);
 
-		Base.showMessage("Build finished", message);
+		Base.showMessage("打印结束", message);
 	}
 
 	private void notifyBuildAborted(Date started, Date aborted) {
@@ -2602,20 +2606,20 @@ ToolpathGenerator.GeneratorListener
 
 		long elapsed = aborted.getTime() - started.getTime();
 
-		String message = "Build aborted.\n\n";
-		message += "Stopped after "
+		String message = "打印中止.\n\n";
+		message += "已耗时 "
 			+ EstimationDriver.getBuildTimeString(elapsed);
 
 		// Highlight the line at which the user aborted...
 		int atWhichLine = machineLoader.getMachineInterface().getLinesProcessed();
 		highlightLine(atWhichLine);
 
-		Base.showMessage("Build aborted (line "+ atWhichLine+")", message);
+		Base.showMessage("打印中止 (行 "+ atWhichLine+")", message);
 	}
 
 	// synchronized public void buildingOver()
 	public void buildingOver() {
-		message("Done building.");
+		message("完成打印.");
 
 		// re-enable the gui and shit.
 		textarea.setEnabled(true);
@@ -2678,7 +2682,7 @@ ToolpathGenerator.GeneratorListener
 		}
 
 		public void run() {
-			message("Estimating...");
+			message("预估...");
 			machineLoader.getMachineInterface().estimate(new JEditTextAreaSource(textarea));
 			editor.estimationOver();
 		}
@@ -2870,9 +2874,9 @@ ToolpathGenerator.GeneratorListener
 
 	protected boolean confirmBuildAbort() {
 		if (machineLoader.isLoaded() && machineLoader.getMachineInterface().getMachineState().isBuilding()) {
-			final String message = "<html>You are currently printing from ReplicatorG! Your build will be stopped.<br>" +
-			"Continue and abort print?</html>";
-			int option = JOptionPane.showConfirmDialog(this, message, "Abort print?", 
+			final String message = "<html>您正在通过ReplicatorG打印！您的打印操作将被中止。<br>" +
+			"继续并退出打印？</html>";
+			int option = JOptionPane.showConfirmDialog(this, message, "中止打印？", 
 					JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (option == JOptionPane.CANCEL_OPTION) 
 			{ return false; }

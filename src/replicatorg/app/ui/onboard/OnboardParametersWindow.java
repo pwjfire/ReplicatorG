@@ -32,7 +32,7 @@ public class OnboardParametersWindow extends JFrame {
 	/// shoot me. I'm passing the main window into this box. I am a bad person - Far F-BOMB
 	public OnboardParametersWindow(OnboardParameters targetParams, Driver driver, MainWindow  mainwin)
 	{	
-		super("Update Machine Options");
+		super("更新电路板参数");
 		this.mainwin = mainwin;
 	
 		Image icon = Base.getImage("images/icon.gif", this);
@@ -44,7 +44,7 @@ public class OnboardParametersWindow extends JFrame {
 		add(paramsTabs, "span 2, wrap");
 
 		onboardParamsTab = new MachineOnboardParameters(targetParams, driver, (JFrame)this);
-		paramsTabs.addTab("Motherboard", onboardParamsTab);
+		paramsTabs.addTab("主板", onboardParamsTab);
 		
 		String machineType = targetParams.getMachineType();
 
@@ -56,7 +56,7 @@ public class OnboardParametersWindow extends JFrame {
       
       for(ToolModel t : tools)
       {
-        paramsTabs.addTab("Extruder " + t.getIndex(), new ExtruderOnboardParameters(targetParams, t,(JFrame)this));
+        paramsTabs.addTab("喷头 " + t.getIndex(), new ExtruderOnboardParameters(targetParams, t,(JFrame)this));
       }
    // }		
 		/*String machineType = targetParams.getMachineType();
@@ -67,6 +67,7 @@ public class OnboardParametersWindow extends JFrame {
 			paramsTabs.addTab("Bot Settings", new BotParameters());
 		}*/
 
+/*      
 		JLabel verifyString = new JLabel("Warning: Machine Type is not verifiable.");
 		verifyString.setToolTipText("this machine has no way to verify the EEPORM is a valid layout");
 		if(targetParams.canVerifyMachine())
@@ -81,8 +82,9 @@ public class OnboardParametersWindow extends JFrame {
 			
 		}
 		add(verifyString);
-		
-		cancelButton = new JButton("Cancel");
+*/
+      
+		cancelButton = new JButton("取消");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				OnboardParametersWindow.this.dispose();

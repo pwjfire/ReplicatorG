@@ -43,7 +43,7 @@ public class UploaderDialog extends JDialog implements ActionListener {
 	State state;
 
 	public UploaderDialog(Frame parent, FirmwareUploader uploader) {
-		super(parent,"Firmware upgrade",true);
+		super(parent,"上传固件",true);
 		this.uploader = uploader;
 		centralPanel = new JPanel(new BorderLayout());
 		Container c = getContentPane();
@@ -52,14 +52,14 @@ public class UploaderDialog extends JDialog implements ActionListener {
 		centralPanel.setMinimumSize(panelSize);
 		centralPanel.setMaximumSize(panelSize);
 		c.add(centralPanel,"wrap,spanx");
-		JButton cancelButton = new JButton("Cancel");
+		JButton cancelButton = new JButton("取消");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				doCancel();
 			}
 		});
 		c.add(cancelButton,"tag cancel");
-		nextButton = new JButton("Next >");
+		nextButton = new JButton("下一步 >");
 		nextButton.setEnabled(false);
 		nextButton.addActionListener(this);
 		c.add(nextButton,"tag ok");
@@ -170,7 +170,7 @@ public class UploaderDialog extends JDialog implements ActionListener {
 		final AbstractFirmwareUploader uploader = createUploader();
 		state = State.UPLOADING;
 		nextButton.setEnabled(true);
-		nextButton.setText("Upload");
+		nextButton.setText("上传");
 		JPanel panel = new JPanel();
 		panel.setLayout(new MigLayout("fill"));
 		panel.add(new JLabel("<html>"+uploader.getUploadInstructions()+"</html>"),"wrap");
@@ -216,15 +216,15 @@ public class UploaderDialog extends JDialog implements ActionListener {
 			boolean success = uploader.upload();
 			if (success) {
 				JOptionPane.showMessageDialog(this, 
-						"Firmware update succeeded!", 
-						"Firmware Uploaded",
+						"固件上传成功！", 
+						"固件已上传",
 						JOptionPane.INFORMATION_MESSAGE);
 				doCancel();
 			} else {
 				JOptionPane.showMessageDialog(this, 
-						"<html>The firmware update did not succeed.  Check the console for details.<br/>"+
-						"You can click the \"Upload\" button to try again.</html>", 
-						"Upload Failed",
+						"<html>固件上传失败。详细信息请参见面板。<br/>"+
+						"您可以按前述步骤再试几次。</html>", 
+						"上传失败",
 						JOptionPane.ERROR_MESSAGE);
 				
 			}

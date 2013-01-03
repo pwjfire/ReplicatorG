@@ -143,7 +143,7 @@ public class MachineStatusPanel extends BGPanel implements MachineListener {
 		boolean checkTempDuringBuild = Base.preferences.getBoolean("build.monitor_temp", true);
 
 		if( evt.getState().isBuilding() && checkTempDuringBuild == false )
-			tempLabel.setText("Monitor build temp.: off");
+			tempLabel.setText("打印时温度监控: 关闭");
 		
 		// And mark which state we are in.
 		switch (state) {
@@ -172,7 +172,7 @@ public class MachineStatusPanel extends BGPanel implements MachineListener {
 			}
 				
 			final String s = String.format(
-					"Commands: %1$7d / %2$7d  (%3$3.2f%%) | Elapsed: %4$s  |  Est. done in:  %5$s",
+					"命令: %1$7d / %2$7d  (%3$3.2f%%) | 经过: %4$s  |  估计剩余:  %5$s",
 					event.getLines(), event.getTotalLines(), 
 					percentComplete,
 					EstimationDriver.getBuildTimeString(event.getElapsed(), true),
@@ -221,7 +221,7 @@ public class MachineStatusPanel extends BGPanel implements MachineListener {
 					if(t.hasHeatedPlatform())
 					{
 						double ptemp = t.getPlatformCurrentTemperature();
-						tempString += String.format("Platform: %1$3.1f\u00B0C", ptemp);
+						tempString += String.format("平台: %1$3.1f\u00B0C", ptemp);
 					}
 				}
 				

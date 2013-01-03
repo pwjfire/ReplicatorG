@@ -50,11 +50,11 @@ public class FirmwareSelectionPanel extends JPanel {
 		}
 	}
 
-	final JLabel description = new JLabel("<html><font color=\"gray\">Select a firmware version.</font></html>");
+	final JLabel description = new JLabel("<html><font color=\"gray\">选择固件版本.</font></html>");
 
 	public FirmwareSelectionPanel(Node selectedBoard, final FirmwareSelectionListener listener) {
 		setLayout(new MigLayout("fill","","[grow 0][grow 100]"));
-		add(new JLabel("Select the firmware version to install:"),"growy 0,wrap");
+		add(new JLabel("选择安装的固件版本:"),"growy 0,wrap");
 		final JList list = new JList(new FirmwareListModel(selectedBoard));
 		list.setFixedCellHeight(30);
 		final JScrollPane scrollPane = new JScrollPane(list);

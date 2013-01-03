@@ -46,9 +46,9 @@
 	 private JCheckBox aAxisInvertBox = new JCheckBox();
 	 private JCheckBox bAxisInvertBox = new JCheckBox();
 	 private JCheckBox zHoldBox = new JCheckBox();
-	 private JButton resetToFactoryButton = new JButton("Reset motherboard to factory settings");
-	 private JButton resetToBlankButton = new JButton("Reset motherboard completely");
-	 private JButton commitButton = new JButton("Commit Changes");
+	 private JButton resetToFactoryButton = new JButton("将主板参数恢复到出厂设置");
+	 private JButton resetToBlankButton = new JButton("完全重设主板参数");
+	 private JButton commitButton = new JButton("提交更改");
 	 private static final String[]  endstopInversionChoices = {
 		 "No endstops installed",
 		 "Inverted (Default; Mechanical switch or H21LOB-based enstops)",
@@ -100,14 +100,14 @@
 	  */
 	 private void requestResetFromUser(String extendedMessage) {
 
-		 String message = "For these changes to take effect your motherboard needs to reset. <br/>"+
-				 "This may take up to <b>10 seconds</b>.";
+		 String message = "必须要重启主板才能使修改生效<br/>"+
+				 "重启大约要耗时<b>10秒</b>.";
 		 if(extendedMessage != null)
 			 message = message + extendedMessage;
 
 		 int confirm = JOptionPane.showConfirmDialog(this, 
 				 "<html>" + message + "</html>",
-				 "Reset board.", 
+				 "重启主板", 
 				 JOptionPane.DEFAULT_OPTION,
 				 JOptionPane.INFORMATION_MESSAGE);
 		 if (confirm == JOptionPane.OK_OPTION) {
@@ -253,7 +253,7 @@
 	{
 		try { 
 			target.resetSettingsToBlank();
-			requestResetFromUser("<b>Resetting EEPROM to completely blank</b>");
+			requestResetFromUser("<b>清空EEPROM</b>");
 			MachineOnboardParameters.this.dispose();
 		}
 		catch (replicatorg.drivers.RetryException e){
@@ -267,7 +267,7 @@
 	private void resetToFactory() {
 		try { 
 			target.resetSettingsToFactory();
-			requestResetFromUser("<b>Resetting EEPROM to Factory Default.</b>");
+			requestResetFromUser("<b>恢复到出厂设置</b>");
 			MachineOnboardParameters.this.dispose();
 		}
 		catch (replicatorg.drivers.RetryException e){
@@ -354,7 +354,7 @@
 
     setLayout(new MigLayout("fill", "[r][l][r]"));
 
-		add(new JLabel("Machine Name (max. "+Integer.toString(MAX_NAME_LENGTH)+" chars)"));
+		add(new JLabel("机器名称 (最多. "+Integer.toString(MAX_NAME_LENGTH)+" 字符(中文每字2个字符))"));
 		machineNameField.setColumns(MAX_NAME_LENGTH);
 		add(machineNameField,"span 2, wrap");
 
@@ -362,21 +362,21 @@
 		add(subTabs, "span 3, wrap");
 
 		JPanel endstopsTab = new JPanel(new MigLayout("fill", "[r][l][r][l]"));
-		subTabs.addTab("Endstops/Axis Inversion", endstopsTab);
+		subTabs.addTab("极限开关/轴 反转", endstopsTab);
 
 		JPanel homeVrefsTab = new JPanel(new MigLayout("fill", "[r][l][r][l]"));
                 
                 if(target.hasVrefSupport())
 		{
-			subTabs.addTab("Homing/VREFs", homeVrefsTab);
+			subTabs.addTab("回零/电压", homeVrefsTab);
 		} else {
-			subTabs.addTab("Homing", homeVrefsTab);
+			subTabs.addTab("回零", homeVrefsTab);
 		}
 		
 		EnumMap<AxisId, String> axesAltNamesMap = target.getAxisAlises();
 
   		if( target.hasToolCountOnboard() ) {
-  			endstopsTab.add(new JLabel("Reported Tool Count:"));
+  			endstopsTab.add(new JLabel("喷头数量:"));
   			endstopsTab.add(toolCountField, "span 2, wrap");
   		}
 		if(target.hasHbp()){
@@ -384,34 +384,34 @@
 			endstopsTab.add(hbpToggleBox,"span 2, wrap");
 		}
 
-		endstopsTab.add(new JLabel("Invert X axis"));		
+		endstopsTab.add(new JLabel("反转X轴"));		
 		endstopsTab.add(xAxisInvertBox,"span 2, wrap");
 		
-		endstopsTab.add(new JLabel("Invert Y axis"));
+		endstopsTab.add(new JLabel("反转Y轴"));
 		endstopsTab.add(yAxisInvertBox,"span 2, wrap");
 		
-		endstopsTab.add(new JLabel("Invert Z axis"));
+		endstopsTab.add(new JLabel("反转Z轴"));
 		endstopsTab.add(zAxisInvertBox,"span 2, wrap");
 
-		String aName = "Invert A axis";
+		String aName = "反转A轴";
 		if( axesAltNamesMap.containsKey(AxisId.A) )
 			aName = aName + " (" + axesAltNamesMap.get(AxisId.A) + ") ";
 		endstopsTab.add(new JLabel(aName));
 		endstopsTab.add(aAxisInvertBox,"span 2, wrap");
 		
-		String bName = "Invert B axis";
+		String bName = "反转B轴";
 		if( axesAltNamesMap.containsKey(AxisId.B) )
 			bName = bName + " (" + axesAltNamesMap.get(AxisId.B) + ") ";
 		endstopsTab.add(new JLabel(bName));
 		
 		endstopsTab.add(bAxisInvertBox,"span 2, wrap");
-		endstopsTab.add(new JLabel("Hold Z axis"));
+		endstopsTab.add(new JLabel("锁死Z轴"));
 		
 		endstopsTab.add(zHoldBox,"span 2, wrap");
-		endstopsTab.add(new JLabel("Invert endstops"));
+		endstopsTab.add(new JLabel("反转极限开关"));
 		
 		endstopsTab.add(endstopInversionSelection,"span 2, wrap");
-		endstopsTab.add(new JLabel("Emergency stop"));
+		endstopsTab.add(new JLabel("急停开关"));
 		endstopsTab.add(estopSelection,"spanx, wrap");
 		
 		
@@ -428,38 +428,38 @@
 			vref2.setColumns(4);
 			vref3.setColumns(4);
 			vref4.setColumns(4);
-			homeVrefsTab.add(new JLabel("X home offset (mm)"));
+			homeVrefsTab.add(new JLabel("X回零偏移(mm)"));
 			homeVrefsTab.add(xAxisHomeOffsetField);
-			homeVrefsTab.add(new JLabel("VREF Pot. 0"), "split");
+			homeVrefsTab.add(new JLabel("驱动板电压. 0"), "split");
 			homeVrefsTab.add(vref0, "wrap");
-			homeVrefsTab.add(new JLabel("Y home offset (mm)"));
+			homeVrefsTab.add(new JLabel("Y回零偏移(mm)"));
 			homeVrefsTab.add(yAxisHomeOffsetField);
-			homeVrefsTab.add(new JLabel("VREF Pot. 1"), "split");
+			homeVrefsTab.add(new JLabel("驱动板电压. 1"), "split");
 			homeVrefsTab.add(vref1, "wrap");
-			homeVrefsTab.add(new JLabel("Z home offset (mm)"));
+			homeVrefsTab.add(new JLabel("Z回零偏移(mm)"));
 			homeVrefsTab.add(zAxisHomeOffsetField);
-			homeVrefsTab.add(new JLabel("VREF Pot. 2"), "split");
+			homeVrefsTab.add(new JLabel("驱动板电压. 2"), "split");
 			homeVrefsTab.add(vref2, "wrap");
-			homeVrefsTab.add(new JLabel("A home offset (mm)"));
+			homeVrefsTab.add(new JLabel("A回零偏移(mm)"));
 			homeVrefsTab.add(aAxisHomeOffsetField);
-			homeVrefsTab.add(new JLabel("VREF Pot. 3"), "split");
+			homeVrefsTab.add(new JLabel("驱动板电压. 3"), "split");
 			homeVrefsTab.add(vref3, "wrap");
-			homeVrefsTab.add(new JLabel("B home offset (mm)"));
+			homeVrefsTab.add(new JLabel("B回零偏移(mm)"));
 			homeVrefsTab.add(bAxisHomeOffsetField);
-			homeVrefsTab.add(new JLabel("VREF Pot. 4"), "split");
+			homeVrefsTab.add(new JLabel("驱动板电压. 4"), "split");
 			homeVrefsTab.add(vref4, "wrap");
 		}
 		else
 		{
-			homeVrefsTab.add(new JLabel("X home offset (mm)"));
+			homeVrefsTab.add(new JLabel("X回零偏移(mm)"));
 			homeVrefsTab.add(xAxisHomeOffsetField,"wrap");
-			homeVrefsTab.add(new JLabel("Y home offset (mm)"));
+			homeVrefsTab.add(new JLabel("Y回零偏移(mm)"));
 			homeVrefsTab.add(yAxisHomeOffsetField,"wrap");
-			homeVrefsTab.add(new JLabel("Z home offset (mm)"));
+			homeVrefsTab.add(new JLabel("Z回零偏移(mm)"));
 			homeVrefsTab.add(zAxisHomeOffsetField,"wrap");
-			homeVrefsTab.add(new JLabel("A home offset (mm)"));
+			homeVrefsTab.add(new JLabel("A回零偏移(mm)"));
 			homeVrefsTab.add(aAxisHomeOffsetField,"wrap");
-			homeVrefsTab.add(new JLabel("B home offset (mm)"));
+			homeVrefsTab.add(new JLabel("B回零偏移(mm)"));
 			homeVrefsTab.add(bAxisHomeOffsetField,"wrap");
                         
 		}
@@ -469,13 +469,13 @@
 		    yToolheadOffsetField.setColumns(10);
 		    zToolheadOffsetField.setColumns(10);
 		    
-		    homeVrefsTab.add(new JLabel("X toolhead offset (mm)"));
+		    homeVrefsTab.add(new JLabel("X方向喷头偏移(mm)"));
 		    homeVrefsTab.add(xToolheadOffsetField, "wrap");
 		    
-		    homeVrefsTab.add(new JLabel("Y toolhead offset (mm)"));
+		    homeVrefsTab.add(new JLabel("Y方向喷头偏移(mm)"));
 		    homeVrefsTab.add(yToolheadOffsetField, "wrap");
 		    
-		    homeVrefsTab.add(new JLabel("Z toolhead offset (mm)"));
+		    homeVrefsTab.add(new JLabel("Z方向喷头偏移(mm)"));
 		    homeVrefsTab.add(zToolheadOffsetField, "wrap");
                    
 		}
@@ -504,7 +504,7 @@
 //				loadParameters();
 			}
 		});
-		resetToFactoryButton.setToolTipText("Reset the onboard settings to the factory defaults");
+		resetToFactoryButton.setToolTipText("将主板参数恢复成出厂时的默认设置");
 		add(resetToFactoryButton, "split 1");
 
 		
@@ -515,7 +515,7 @@
 //				loadParameters();
 			}
 		});
-		resetToBlankButton.setToolTipText("Reset the onboard settings to *completely blank*");
+		resetToBlankButton.setToolTipText("将主板参数重设成完全空白");
 		add(resetToBlankButton);
 
 		commitButton.addActionListener(new ActionListener() {
@@ -747,7 +747,7 @@
 		 @Override
 		 public void buildUI() {
 			 JPanel accelerationTab = new JPanel(new MigLayout("fill", "[r][l][r][l]"));
-			 subTabs.addTab("Acceleration", accelerationTab);
+			 subTabs.addTab("加速", accelerationTab);
 
 			 masterAcceleration.setColumns(4);
 
@@ -765,36 +765,36 @@
 			 bAxisAcceleration.setColumns(8);
 			 bJunctionJerk.setColumns(4);
 
-			 accelerationTab.add(new JLabel("Acceleration On"));
+			 accelerationTab.add(new JLabel("加速打开"));
 			 accelerationTab.add(accelerationBox, "span 2, wrap");
 
-			 accelerationTab.add(new JLabel("Master acceleration rate (mm/s/s)"));
+			 accelerationTab.add(new JLabel("主加速度(mm/s/s)"));
 			 accelerationTab.add(masterAcceleration, "span 2, wrap");
 
-			 accelerationTab.add(new JLabel("X acceleration rate (mm/s/s)"));
+			 accelerationTab.add(new JLabel("X轴加速度(mm/s/s)"));
 			 accelerationTab.add(xAxisAcceleration);
-			 accelerationTab.add(new JLabel("X/Y max junction jerk (mm/s)"));
+			 accelerationTab.add(new JLabel("X/Y轴结合处最大速度(mm/s)"));
 			 accelerationTab.add(xyJunctionJerk, "wrap");
 
-			 accelerationTab.add(new JLabel("Y acceleration rate (mm/s/s)"));
+			 accelerationTab.add(new JLabel("Y轴加速度 (mm/s/s)"));
 			 accelerationTab.add(yAxisAcceleration, "span 2, wrap");
 
-			 accelerationTab.add(new JLabel("Z acceleration rate (mm/s/s)"));
+			 accelerationTab.add(new JLabel("Z轴加速度(mm/s/s)"));
 			 accelerationTab.add(zAxisAcceleration);
-			 accelerationTab.add(new JLabel("Z maximum junction jerk (mm/s)"));
+			 accelerationTab.add(new JLabel("Z轴结合处最大速度(mm/s)"));
 			 accelerationTab.add(zJunctionJerk, "wrap");
 
-			 accelerationTab.add(new JLabel("A acceleration rate (mm/s/s)"));
+			 accelerationTab.add(new JLabel("A轴加速度(mm/s/s)"));
 			 accelerationTab.add(aAxisAcceleration);
-			 accelerationTab.add(new JLabel("A maximum junction jerk (mm/s)"));
+			 accelerationTab.add(new JLabel("A轴结合处最大速度(mm/s)"));
 			 accelerationTab.add(aJunctionJerk, "wrap");
 
-			 accelerationTab.add(new JLabel("B acceleration rate (mm/s/s)"));
+			 accelerationTab.add(new JLabel("B轴加速度(mm/s/s)"));
 			 accelerationTab.add(bAxisAcceleration);
-			 accelerationTab.add(new JLabel("B maximum junction jerk (mm/s)"));
+			 accelerationTab.add(new JLabel("B轴结合处最大速度(mm/s)"));
 			 accelerationTab.add(bJunctionJerk, "wrap");
                     
-			 accelerationTab.add(new JLabel("Minimum Print Speed (mm/s)"));
+			 accelerationTab.add(new JLabel("最小打印速度(mm/s)"));
 			 accelerationTab.add(minimumSpeed, "wrap");
 		 }
 

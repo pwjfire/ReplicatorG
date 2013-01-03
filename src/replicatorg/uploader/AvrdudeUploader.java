@@ -57,8 +57,8 @@ public class AvrdudeUploader extends AbstractFirmwareUploader {
 			return uploadInstructions;
 		}
 		if (manualReset == true) {
-			return "Press the reset button on the target board and click the \"Upload\" button " +
-			"to update the firmware.  Try to press the reset button just before you click \"Upload\".";
+			return "用手按电路板上的reset按钮，同时点击\"上传\"按钮" +
+			"来上传固件。要在按动reset按钮后紧接着点击\"上传\"按钮。";
 		}
 		return super.getUploadInstructions();
 	}

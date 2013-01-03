@@ -89,7 +89,7 @@ public class BoardSelectionPanel extends JPanel {
 	
 	public BoardSelectionPanel(Document firmwareDoc, final BoardSelectionListener listener) {
 		setLayout(new MigLayout("fill","","[grow 0][grow 100]"));
-		add(new JLabel("Select the board to upgrade:"),"growy 0,wrap");
+		add(new JLabel("选择合适的电路板类型:"),"growy 0,wrap");
 		final BoardListModel blm = new BoardListModel(firmwareDoc);
 		final JList list = new JList(blm);
 		final JScrollPane scrollPane = new JScrollPane(list);

@@ -226,8 +226,8 @@ public class Serial implements SerialPortEventListener {
 			port.notifyOnDataAvailable(true);
 		} catch (PortInUseException e) {
 			throw new SerialException(
-					"Serial port '" + name
-					+ "' already in use.  Try quiting any programs that may be using it.");
+					"串口 '" + name
+					+ "' 已被占用。请关闭正在使用该串口的程序。");
 		} catch (Exception e) {
 			throw new SerialException("Error opening serial port '" + name + "'.", e);
 		}
