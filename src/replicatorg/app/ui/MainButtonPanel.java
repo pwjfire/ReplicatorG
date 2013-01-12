@@ -167,32 +167,32 @@ public class MainButtonPanel extends BGPanel implements MachineListener, ActionL
 		Color statusColor = Base.getColorPref("buttons.status.color","#FFFFFF");
 
 
-		buildButton = makeButton("Build", "images/button-build.png");
+		buildButton = makeButton("打印", "images/button-build.png");
 		add(buildButton);
 
-		playbackButton = makeButton("Build from SD card currently in printer", "images/button-playback.png");
+		playbackButton = makeButton("打印SD卡中的文件", "images/button-playback.png");
 		add(playbackButton);
-		fileButton = makeButton("Build to file for use with SD card", "images/button-to-file.png");
+		fileButton = makeButton("生成SD卡文件", "images/button-to-file.png");
 		add(fileButton);
-		generateButton = makeButton("Model to GCode", "images/button-to-gcode.png");
+		generateButton = makeButton("将模型转成G代码", "images/button-to-gcode.png");
 		add(generateButton);
 
-		pauseButton = makeButton("Pause", "images/button-pause.png");
+		pauseButton = makeButton("暂停", "images/button-pause.png");
 		add(pauseButton,"gap unrelated");
-		stopButton = makeButton("Stop", "images/button-stop.png");
+		stopButton = makeButton("停止", "images/button-stop.png");
 		add(stopButton);
 
 
-		cpButton = makeButton("Control panel", "images/button-control-panel.png");
+		cpButton = makeButton("控制面板", "images/button-control-panel.png");
 		rcButton = makeButton("Live tuning", "images/button-realtime-panel.png");
 		add(cpButton,"gap unrelated");
 		add(rcButton, "hidemode 1");
 		
-		resetButton = makeButton("Reset machine", "images/button-reset.png");
+		resetButton = makeButton("重启机器", "images/button-reset.png");
 		add(resetButton,"gap unrelated");
-		connectButton = makeButton("Connect", "images/button-connect.png");
+		connectButton = makeButton("连接", "images/button-connect.png");
 		add(connectButton,"gap unrelated");
-		disconnectButton = makeButton("Disconnect", "images/button-disconnect.png");
+		disconnectButton = makeButton("断开", "images/button-disconnect.png");
 		add(disconnectButton);
 
 		statusLabel = new JLabel();

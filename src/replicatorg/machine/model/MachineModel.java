@@ -144,7 +144,7 @@ public class MachineModel
 				String name = kid.getFirstChild().getNodeValue().trim();
 				if(name.startsWith("Replicator 2"))
 					machineType = MachineType.REPLICATOR_2;
-				if(name.startsWith("The Replicator"))
+				if(name.startsWith("Creator"))
 					machineType = MachineType.THE_REPLICATOR;
 				else if(name.startsWith("Thingomatic"))
 					machineType = MachineType.THINGOMATIC;

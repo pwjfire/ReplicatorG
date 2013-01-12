@@ -25,8 +25,8 @@ class ConfigurationDialog extends JDialog {
 	final boolean postProcessToolheadIndex = true;
 	final String profilePref = "replicatorg.skeinforge.profilePref";
 	
-	JButton generateButton = new JButton("Generate Gcode");
-	JButton cancelButton = new JButton("Cancel");
+	JButton generateButton = new JButton("生成G代码");
+	JButton cancelButton = new JButton("取消");
 	
 	/* these must be explicitly nulled at close because of a java bug:
 	 * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6497929
@@ -96,7 +96,7 @@ class ConfigurationDialog extends JDialog {
 		setTitle("GCode Generator");
 		setLayout(new MigLayout("aligny, top, ins 5, fill"));
 		
-		add(new JLabel("Slicing Profile:"), "split 2");
+		add(new JLabel("切片配置:"), "split 2");
 		
 		// This is intended to fix a bug where the "Generate Gcode"
 		// button doesn't get enabled 
@@ -118,7 +118,7 @@ class ConfigurationDialog extends JDialog {
 			add(preference.getUI(), "growx, wrap");
 		}
 		
-		generateButton.setToolTipText("Generates GCode instructions for your machine.");
+		generateButton.setToolTipText("为您的机器生成G代码.");
 		
 		add(generateButton, "tag ok, split 2");
 		add(cancelButton, "tag cancel");
@@ -166,12 +166,12 @@ class ConfigurationDialog extends JDialog {
 			if((feed_rate > 40) || (travel_rate > 55))
 			{ 
         if(Base.preferences.getBoolean("build.speed_warning", true)){
-				JOptionPane.showMessageDialog(parent,"You are now slicing with accelerated build speeds.\n" +
-            		"Do not print files generated at these speeds unless you have acceleration turned on.\n" +
-            		"Building high speed files with acceleration turned off can harm your Makerbot.\n\n" +
-					"You can turn acceleration on in the Onboard Preferences menu or via your Makerbot's onboard menus\n\n" +
-          "To disable this message, uncheck 'Display Accelerated Speed Warning' in  File->Preferences",
-					"Acceleration Warning", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(parent,"您现在按加速的设置来生成G代码。\n" +
+            		"如果您没有打开加速开关，请不要按这个设置来生成。\n" +
+            		"在关闭加速开关的情况下，生成高速的G代码对机器有损害。\n\n" +
+					"您可以在打印机->电路板参数菜单项中打开或关闭加速功能。\n\n" +
+          "可以在文件->参数菜单项中，取消'显示加速警告'选项来关闭此警告对话框",
+					"加速警告", JOptionPane.WARNING_MESSAGE);
         }
 			}
 	}

@@ -599,8 +599,8 @@ ToolpathGenerator.GeneratorListener
 		
 		// Check if the model is on the platform
 		if (!getPreviewPanel().getModel().isOnPlatform()) {
-			String message = "The bottom of the model doesn't appear to be touching the build surface, and attempting to print it could damage your machine. Ok to move it to the build platform?";
-			int option = JOptionPane.showConfirmDialog(this, message , "Place model on build surface?", 
+			String message = "模型底部无法碰到平台，选确定来将其移动到平台上？";
+			int option = JOptionPane.showConfirmDialog(this, message , "将模型放置到平台？", 
 					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (option == JOptionPane.CANCEL_OPTION) { return; }
 			if (option == JOptionPane.YES_OPTION) {
@@ -612,10 +612,10 @@ ToolpathGenerator.GeneratorListener
 
 		// Check for modified STL
 		if (build.getModel().isModified()) {
-			final String message = "<html>You have made changes to this model.  Any unsaved changes will<br>" +
-			"not be reflected in the generated toolpath.<br>" +
-			"Save the model now?</html>";
-			int option = JOptionPane.showConfirmDialog(this, message, "Save model?", 
+			final String message = "<html>您已经改动了该模型。任何没有被保存的改动<br>" +
+			"都不会被反映在生成的G代码中。<br>" +
+			"现在保存吗？</html>";
+			int option = JOptionPane.showConfirmDialog(this, message, "保存模型？", 
 					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (option == JOptionPane.CANCEL_OPTION) { return; }
 			if (option == JOptionPane.YES_OPTION) {
@@ -626,9 +626,9 @@ ToolpathGenerator.GeneratorListener
 
 		// Check for too-big model
 		if (modelTooBig()) {
-			final String message = "<html>This model is bigger than your machine can build, <br>" +
-			"Are you sure you want to generate code for it?</html>";
-			int option = JOptionPane.showConfirmDialog(this, message, "Generate oversize model?", 
+			final String message = "<html>该模型大小已经超过了机器打印范围，<br>" +
+			"您确定要为该模型生成G代码吗？</html>";
+			int option = JOptionPane.showConfirmDialog(this, message, "为超限模型生成代码？", 
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (option != JOptionPane.YES_OPTION) { return; }
 		}
@@ -643,8 +643,8 @@ ToolpathGenerator.GeneratorListener
 			spp.setEndCode(new MutableGCodeSource(machineLoader.getMachineInterface().getModel().getEndBookendCode()));
 			spp.setMultiHead(isDualDriver());
 			if((machineLoader.getMachineInterface().getMachineType() == MachineType.THE_REPLICATOR) ||
-            (machineLoader.getMachineInterface().getMachineType() == MachineType.REPLICATOR_2) ||
-            (machineLoader.getDriver().getDriverName().equals("Makerbot4GSailfish")))
+				(machineLoader.getMachineInterface().getMachineType() == MachineType.REPLICATOR_2) ||
+				(machineLoader.getDriver().getDriverName().equals("Makerbot4GSailfish")))
 				spp.setAddProgressUpdates(true);
 		}
 		else if (generator instanceof MiracleGrueGenerator) {
@@ -658,8 +658,8 @@ ToolpathGenerator.GeneratorListener
 			spp.setPrependStart(true);
 			spp.setAppendEnd(true);
 			if((machineLoader.getMachineInterface().getMachineType() == MachineType.THE_REPLICATOR) ||
-            (machineLoader.getMachineInterface().getMachineType() == MachineType.REPLICATOR_2) ||
-            (machineLoader.getDriver().getDriverName().equals("Makerbot4GSailfish")))
+				(machineLoader.getMachineInterface().getMachineType() == MachineType.REPLICATOR_2) ||
+				(machineLoader.getDriver().getDriverName().equals("Makerbot4GSailfish")))
 				spp.setAddProgressUpdates(true);
 
 		}

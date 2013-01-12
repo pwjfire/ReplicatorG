@@ -21,8 +21,8 @@ class ConfigurationDialog extends JDialog {
 	final boolean postProcessToolheadIndex = true;
 	final String profilePref = "replicatorg.miraclegrue.profilePref";
 	
-	JButton generateButton = new JButton("Generate Gcode");
-	JButton cancelButton = new JButton("Cancel");
+	JButton generateButton = new JButton("生成G代码");
+	JButton cancelButton = new JButton("取消");
 	
 	/* these must be explicitly nulled at close because of a java bug:
 	 * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6497929
@@ -89,7 +89,7 @@ class ConfigurationDialog extends JDialog {
 		setTitle("GCode Generator");
 		setLayout(new MigLayout("aligny, top, ins 5, fill"));
 		
-		add(new JLabel("Slicing Profile:"), "split 2");
+		add(new JLabel("切片配置:"), "split 2");
 		
 		// This is intended to fix a bug where the "Generate Gcode" button doesn't get enabled 
 		prefPulldown.addActionListener(new ActionListener(){
@@ -107,7 +107,7 @@ class ConfigurationDialog extends JDialog {
 			add(preference.getUI(), "growx, wrap");
 		}
 		
-		generateButton.setToolTipText("Generates GCode instructions for your machine.");
+		generateButton.setToolTipText("为您的机器生成G代码指令");
 		
 		add(generateButton, "tag ok, split 2");
 		add(cancelButton, "tag cancel");
