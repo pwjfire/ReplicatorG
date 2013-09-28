@@ -177,7 +177,7 @@ ToolpathGenerator.GeneratorListener
 	 */
 	private static final long serialVersionUID = 4144538738677712284L;
 
-	static final String WINDOW_TITLE = "ReplicatorG" + "-" + Base.VERSION_NAME + "-闪铸汉化版";
+	static final String WINDOW_TITLE = "ReplicatorG" + "-" + Base.VERSION_NAME + "-" + "3D打印机";
 
 
 	final static String MODEL_TAB_KEY = "模型";
