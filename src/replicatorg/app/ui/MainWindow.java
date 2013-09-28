@@ -177,7 +177,7 @@ ToolpathGenerator.GeneratorListener
 	 */
 	private static final long serialVersionUID = 4144538738677712284L;
 
-	static final String WINDOW_TITLE = "ReplicatorG" + " - " + Base.VERSION_NAME;
+	static final String WINDOW_TITLE = "ReplicatorG" + " - " + Base.VERSION_NAME + " - " + "WINBO 3D Printer";
 
 
 	final static String MODEL_TAB_KEY = "MODEL";
